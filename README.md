@@ -44,7 +44,7 @@ In this space please either provide images (around 4) showing your prototypes, O
 
 https://www.figma.com/file/t4tzlTlzw1cuJrDizenWRE/Capsule-Prototype?node-id=0%3A1&t=Ao2MbAzyLNCByPPH-1
 
-# Preview
+### Preview
 ![](./Mockups/1.png "Adding new post")
 ![](./Mockups/2.png "Searching")
 ![](./Mockups/3.png "Gallery")
