@@ -41,10 +41,15 @@ along with a very brief caption:**
 There are a few tools for mock-ups. Paper prototypes (low-tech, but effective and cheap), Digital picture edition software (gimp / photoshop / etc.), or dedicated tools like moqups.com (I'm calling out moqups here in particular since it seems to strike the best balance between "easy-to-use" and "wants your money" -- the free teir isn't perfect, but it should be sufficient for our needs with a little "creative layout" to get around the page-limit)
 
 In this space please either provide images (around 4) showing your prototypes, OR, a link to an online hosted mock-up tool like moqups.com
-https://www.figma.com/file/t4tzlTlzw1cuJrDizenWRE/Capsule-Prototype?node-id=0%3A1&t=Ao2MbAzyLNCByPPH-1
-**[Add images/photos that show your paper prototype (around 4)](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository) along with a very brief caption:**
 
-![](https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif)
+https://www.figma.com/file/t4tzlTlzw1cuJrDizenWRE/Capsule-Prototype?node-id=0%3A1&t=Ao2MbAzyLNCByPPH-1
+
+# Preview
+![](./Mockups/1.png "Adding new post")
+![](./Mockups/2.png "Searching")
+![](./Mockups/3.png "Gallery")
+![](./Mockups/4.png "Comments")
+
 
 ## External Dependencies
 
