@@ -1,0 +1,75 @@
+
+/* Set the height of the comments section to 100% */
+.comments {
+  height: 100%;
+  width: 83%;
+  margin-left: 17%;
+  font-family: 'Poppins';
+  font-weight: lighter;
+  font-size: small;
+}
+
+.posted-comments {
+  /* height: 70%; */
+  width: 100%;
+  margin-left: 10%;
+  /* margin-bottom: 2em; */
+}
+
+/* Set the height of the comments container to 50% */
+.comment-container {
+  height: 20%;
+  margin-left: 0%;
+  /* width: 100%; */
+}
+/* Set the width of the comments container to 50% */
+.comment-container {
+  width: 80%;
+  /* float:none; */
+  /* box-sizing: border-box; */
+  padding: 10px;
+  /* border-bottom: 1px solid #ccc; */
+  margin-bottom: 10px;
+  /* overflow-y: auto; */
+}
+/* Set the width of the comments container to 100% on small screens */
+@media screen and (max-width: 767px) {
+  .comment-container {
+    width: 100%;
+    float: none;
+  }
+}
+
+.comment-posted {
+  padding-left: 1.2em;
+}
+
+.input-section {
+  margin-left: 12%;
+  height: 100%;
+  width: 100%;
+  margin-right: 10%;
+  /* display:inline-flex; */
+}
+
+
+.comment-input {
+  display:inline-flex;
+  width: 60%;
+  /* box-sizing: border-box; */
+  height: 2em;
+  border-radius: 17px;
+  padding: 10px;
+
+}
+
+.post-button {
+  margin-left: 2em;
+  width: 8%;
+  padding: 10px;
+  background-color: #1E90FF;
+  color: #fff;
+  /* border-radius: 20px; */
+  cursor: pointer;
+  font-size: 16px;
+}

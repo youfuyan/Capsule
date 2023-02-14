@@ -34,9 +34,6 @@ def login():
 def callback():
     token = oauth.auth0.authorize_access_token()
     session["user"] = token
-    # session['sid'] = token['user_info']['sid']
-    # session['email'] = token['user_info']['email']
-    # session['picture'] = token['user_info']['picture']
     return redirect("/")
 
 
@@ -59,41 +56,29 @@ def logout():
 # def initialize():
 #     db.setup()
 
-
-#  the root page describes the survey and asks the user to consent to participate. 
-# It has two buttons at the bottom: “consent” (go to /survey) and “decline” (go to /decline).
 @app.route("/")
+def header():
+  return render_template('header.html')
+
+
+@app.route("/index", methods=["GET", "POST"])
 def index():
   return render_template('index.html')
 
 
-@app.route("/main")
-def main():
-  return render_template('main.html')
+@app.route("/sideBar", methods=["GET", "POST"])
+def sideBar():
+  return render_template('sideBar.html')
 
 
-# /survey
-# asks the user a few questions, then a “next” button (go to /thanks). The input types must include:
-# text input – this field is “required” and has a minimum length of 3 characters. The user cannot proceed without filling it out – use html5 validation.
-# a group of 3 or more radio buttons
-# select box with 3 or more options
-# checkbox
-# finally, there must be one “conditional” field of type textarea that appears or disappears depending on the state of the checkbox input.
-@app.route('/survey', methods=['GET'])
-def survey():
-  return render_template('survey.html')
+@app.route("/comments", methods=["GET", "POST"])
+def comments():
+  return render_template('comments.html')
 
 
-# /decline - a page that says “thanks anyway” or something like that
-@app.route('/decline', methods=['GET'])
-def decline():
-  return render_template('decline.html')
-
-
-# /thanks - says thank you to the user for completing the survey
-@app.route('/thanks', methods=['GET'])
-def thanks():
-  return render_template('thanks.html')
+@app.route("/addPost", methods=["GET", "POST"])
+def addPost():
+  return render_template('addPost.html')
 
 
 if __name__ == '__main__':
