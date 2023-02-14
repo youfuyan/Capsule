@@ -65,11 +65,18 @@
 
 .post-button {
   margin-left: 2em;
-  width: 8%;
+  width: 10%;
   padding: 10px;
-  background-color: #1E90FF;
+  background-color: #72ccff;
   color: #fff;
-  /* border-radius: 20px; */
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 17px;
+  border: none;
 }
+
+#comment-form {
+  display: flex;
+}
+
+

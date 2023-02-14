@@ -79,6 +79,25 @@ def comments():
 @app.route("/addPost", methods=["GET", "POST"])
 def addPost():
   return render_template('addPost.html')
+    #   if request.method == 'POST':
+    #     # Get the form data
+    #     title = request.form['title']
+    #     body = request.form['body']
+    #     location = request.form['location']
+    #     photo = request.files.get('photo')
+    #     is_draft = request.form.get('draft') == 'on'
+
+    #     # Save the photo to disk
+    #     if photo:
+    #         filename = photo.filename
+    #         photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+    #     # Do something with the form data (e.g. save to a database)
+    #     # ...
+
+    #     return redirect(url_for('home'))
+
+    # return render_template('add_post.html')
 
 
 if __name__ == '__main__':
