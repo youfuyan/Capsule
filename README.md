@@ -6,7 +6,7 @@ CSCI 5117, Spring 2023, [assignment description](https://canvas.umn.edu/courses/
 
 - Team Name: Capsule
 - App Name: Capsule
-- App Link (deploy on laurayinglu branch): https://capsule.onrender.com/ 
+- App Link (deploy on laurayinglu branch): https://capsule.onrender.com/comments
 
 
 ### Students
