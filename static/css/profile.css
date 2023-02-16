@@ -1,0 +1,73 @@
+.user-icon{
+    width: 20%;
+}
+
+.profile-details{
+    padding: 5em;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+.profile-subdetails{
+    padding: 5em;
+    text-align: center;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.profile-subdetails > div{
+    width: 20%;
+}
+
+.profile-images{
+    justify-content: center !important;
+    text-align: center;
+}
+
+.profile-subdetails-middle{
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+
+.upload-box {
+    width: 10em;
+    height: 10em;
+    background-color: #eee;
+}
+
+
+.edit-profile-form{
+    padding-top: 5em;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-profile-form form input{
+    width: 30em;
+}
+
+.edit-profile-form button{
+    margin-left: 30em;
+    width: 20%;
+    margin-top: 2em;
+    padding: 10px;
+    background-color: #72ccff;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 17px;
+    border: none;
+    
+}
+
+.profile-name button{
+    background-color: red;
+    padding: 10px;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 17px;
+    border: none;
+}
