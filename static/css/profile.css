@@ -1,19 +1,20 @@
 .user-icon{
-    width: 20%;
+    width: 100px;
+    margin-right: 5em;
 }
 
 .profile-details{
     padding: 5em;
     border-bottom: 1px solid #ccc;
-    text-align: center;
+    text-align: right;
 }
 
 .profile-subdetails{
     padding: 5em;
     text-align: center;
     justify-content: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 .profile-subdetails > div{
@@ -32,6 +33,7 @@
 
 
 .upload-box {
+    display: inline-block;
     width: 10em;
     height: 10em;
     background-color: #eee;
@@ -62,12 +64,51 @@
     
 }
 
-.profile-name button{
-    background-color: red;
+.profile-name{
+    text-align: left;
+    width: 45%;
+}
+
+.profile-icon{
+    width: 35%;
+}
+
+.personal-menus a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.personal-submenus a{
+    color: inherit;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.edit-button{
     padding: 10px;
     color: #fff;
     border-radius: 20px;
     cursor: pointer;
     font-size: 17px;
     border: none;
+    margin-top: 5%;
+    width: 60%;
+    background-color: #72ccff;
+}
+
+.delete-account-button{
+    padding: 10px;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 17px;
+    border: none;
+    margin-top: 6%;
+    width: 60%;
+    background-color: red;
+}
+
+.edit-profile-name{
+   text-align: left;
 }
