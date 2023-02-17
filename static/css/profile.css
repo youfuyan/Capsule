@@ -50,20 +50,6 @@
     width: 30em;
 }
 
-.edit-profile-form button{
-    margin-left: 30em;
-    width: 20%;
-    margin-top: 2em;
-    padding: 10px;
-    background-color: #72ccff;
-    color: #fff;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 17px;
-    border: none;
-    
-}
-
 .profile-name{
     text-align: left;
     width: 45%;
@@ -111,4 +97,17 @@
 
 .edit-profile-name{
    text-align: left;
+}
+
+.edit-save-button{
+    float: right;
+    width: 20%;
+    margin-top: 2em;
+    padding: 10px;
+    background-color: #72ccff;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 17px;
+    border: none;
 }
