@@ -116,5 +116,15 @@ def search():
     return render_template('search.html')
 
 
+@app.route("/loginPage", methods=["GET", "POST"])
+def loginPage():
+  return render_template('login.html')
+
+
+@app.route("/signUpPage", methods=["GET", "POST"])
+def signUpPage():
+  return render_template('signUp.html')
+  
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
