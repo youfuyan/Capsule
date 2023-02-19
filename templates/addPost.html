@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.1/pure-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css">
+    <link rel="stylesheet" href="../static/css/sideBar.css">
+    <link rel="stylesheet" href="../static/css/addPost.css">
+    
+  </head>
+
+  <body>
+
+    {% import 'sideBar.html' as sideBar %}
+
+    <!-- header and sideBar -->
+    {{ sideBar.header() }}
+
+    <!-- the right part body  -->
+    <!-- {% block content %} -->
+
+    <form id="post-form" class="pure-form pure-form-aligned" method="post">
+      <fieldset>
+        {% macro addImages() -%}
+        <div id="add-images">
+
+          <div class="upload-box">
+            <label for="file-upload" class="upload-label">
+              <i class="fa fa-plus"></i>
+            </label>
+            <input type="file" id="file-upload" class="upload-input">
+            <div id="image-preview" class="upload-preview"></div>
+          </div>
+
+        </div>
+        {% endmacro -%}
+
+        <!-- uploading photos -->
+        <div id="upload-images">
+          {{ addImages() }}
+          <!-- {{ addImages() }} -->
+        </div>
+
+        <!-- add title -->
+        <div id="add-title">
+          <input id="title" name="title" type="text" placeholder="Add a Title">
+        </div>
+
+        <!-- add body text  -->
+        <div id="add-body">
+          <textarea rows="15" id="body" name="body" rows="10" placeholder="Add text"></textarea>
+        </div>
+
+
+        <!-- add location - optional  -->
+        <div id="add-location-save">
+
+          <!-- <div class="locate"> -->
+            <label for="locate" class="upload-location">
+              <i class="fas fa-map-marker-alt"></i>
+            </label>
+            <input type="text" name="location" id="locate" class="choose-location" placeholder="Location...">
+            <!-- <div id="loc-preview" class="upload-preview"></div> -->
+          <!-- </div> -->
+
+          <!-- <div id="save-post"> -->
+            <!-- post or save as a draft -->
+            <button id="save-draft">
+              <i class="far fa-edit"></i>
+              <br>
+              Save Draft
+            </button>
+
+            <button type="submit" class="add-post-button">Post</button>
+          <!-- </div> -->
+        </div>
+      
+      </fieldset>
+    </form>
+
+    </div>
+    <!-- {% endblock %} -->
+  </body>
+
+  <script src="../static/js/addPost.js"></script>
+
+</html>
