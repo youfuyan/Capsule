@@ -125,6 +125,9 @@ def loginPage():
 def signUpPage():
   return render_template('signUp.html')
   
+@app.route("/gallery", methods=["GET", "POST"])
+def gallery():
+  return render_template('gallery.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

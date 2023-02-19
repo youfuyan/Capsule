@@ -10,27 +10,15 @@
     <link rel="stylesheet" href="../static/css/sideBar.css">
     <link rel="stylesheet" href="../static/css/gallery.css" />
 </head>
-  <div class="heading">
-      Capsule
-  </div>
 
-  <div class="sidebar">
-    <div class="pure-menu">
-      <ul class="pure-menu-list">
-        <li class="pure-menu-item"><a href="/gallery" class="pure-menu-link"><i class="fas fa-image"></i> Gallery</a>
-        </li>
-        <li class="pure-menu-item"><a href="/search" class="pure-menu-link"><i class="fas fa-search"></i> Search</a>
-        </li>
-        <li class="pure-menu-item"><a href="/liked" class="pure-menu-link"><i class="far fa-heart"></i> Liked</a></li>
-        <li class="pure-menu-item"><a href="/saved" class="pure-menu-link"><i class="far fa-bookmark"></i> Saved</a>
-        </li>
-        <li class="pure-menu-item"><a href="/addPost" class="pure-menu-link"><i class="fas fa-plus"></i> New Post</a>
-        </li>
-      </ul>
-    </div>
-  </div>
 
 <body>
+
+  {% import 'sideBar.html' as sideBar %}
+
+    <!-- header and sideBar -->
+    {{ sideBar.header() }}
+
 	<div class="container">
 		<div class="post">
 			<img src="https://picsum.photos/id/10/400/400" alt="Post 2">
@@ -38,7 +26,10 @@
 				<h2>Post Title 1</h2>
 				<p>Post description goes here...</p>
 				<div class="post-icons">
-					<span class="like-icon"><i class="fa fa-thumbs-up"></i>500<i class="fa fa-comment"></i>100<i class="fa fa-bookmark"></i></span>
+					<span class="like-icon">
+            <i class="fa fa-thumbs-up"></i>500
+            <a href="/comments"><i class="fa fa-comment"></i> 100</a>
+            <i class="fa fa-bookmark"></i></span>
 				</div>
 			</div>
 		</div>
