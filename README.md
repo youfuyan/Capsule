@@ -8,7 +8,7 @@ This is dev branch.
 
 - Team Name: Capsule
 - App Name: Capsule
-- App Link: <https://TODO.com/>
+- App Link: https://capsule-igtc.onrender.com
 
 ### Students
 
