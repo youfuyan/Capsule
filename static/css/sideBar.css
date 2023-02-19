@@ -13,8 +13,8 @@ html, body {
 
 .heading {
   /* height: 100%; */
-  padding: 10px;
-  padding-left: 1em;
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-family: 'Poppins';
   font-weight: bolder;
   color: white;
@@ -28,6 +28,8 @@ html, body {
 }
 
 .sidebar {
+  position: sticky;
+  top: 0;
   width: 16%;
   float: left;
   box-sizing: border-box;

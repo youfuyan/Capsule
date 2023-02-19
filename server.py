@@ -62,7 +62,7 @@ def logout():
 
 @app.route("/")
 def header():
-    return render_template('header.html')
+  return render_template('profile.html')
 
 
 @app.route("/index", methods=["GET", "POST"])
@@ -103,6 +103,13 @@ def addPost():
 
     # return render_template('add_post.html')
 
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+  return render_template('profile.html')
+
+@app.route("/editProfile", methods=["GET", "POST"])
+def editProfile():
+  return render_template('editProfile.html')
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
