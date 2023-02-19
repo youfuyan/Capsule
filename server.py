@@ -22,13 +22,16 @@ oauth.register(
     server_metadata_url=f'https://{env.get("AUTH0_DOMAIN")}/.well-known/openid-configuration'
 )
 
-## AUTH0
+# AUTH0
+
+
 @app.route("/login")
 def login():
     # return a flask object redirecting a html
     return oauth.auth0.authorize_redirect(
         redirect_uri=url_for("callback", _external=True)
     )
+
 
 @app.route("/callback", methods=["GET", "POST"])
 def callback():
@@ -56,6 +59,7 @@ def logout():
 # def initialize():
 #     db.setup()
 
+
 @app.route("/")
 def header():
   return render_template('profile.html')
@@ -63,22 +67,22 @@ def header():
 
 @app.route("/index", methods=["GET", "POST"])
 def index():
-  return render_template('index.html')
+    return render_template('index.html')
 
 
 @app.route("/sideBar", methods=["GET", "POST"])
 def sideBar():
-  return render_template('sideBar.html')
+    return render_template('sideBar.html')
 
 
 @app.route("/comments", methods=["GET", "POST"])
 def comments():
-  return render_template('comments.html')
+    return render_template('comments.html')
 
 
 @app.route("/addPost", methods=["GET", "POST"])
 def addPost():
-  return render_template('addPost.html')
+    return render_template('addPost.html')
     #   if request.method == 'POST':
     #     # Get the form data
     #     title = request.form['title']
@@ -107,5 +111,10 @@ def profile():
 def editProfile():
   return render_template('editProfile.html')
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    return render_template('search.html')
+
+
 if __name__ == '__main__':
-  app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
