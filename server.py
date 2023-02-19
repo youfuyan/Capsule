@@ -62,7 +62,7 @@ def logout():
 
 @app.route("/")
 def header():
-  return render_template('profile.html')
+  return render_template('login.html')
 
 
 @app.route("/index", methods=["GET", "POST"])

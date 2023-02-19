@@ -14,8 +14,6 @@ This is dev branch.
 https://capsule-igtc.onrender.com
 
 
-
-
 ### Students
 
 - Youfu Yan, yan00111@umn.edu
@@ -35,7 +33,7 @@ https://capsule-igtc.onrender.com
 
 **Is there anything special we need to know in order to effectively test your app? (optional):**
 
-- ...
+- testing comments page: https://capsule-igtc.onrender.com/comments
 
 ## Screenshots of Site
 
