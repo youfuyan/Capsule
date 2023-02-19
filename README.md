@@ -33,7 +33,7 @@ https://capsule-igtc.onrender.com
 
 **Is there anything special we need to know in order to effectively test your app? (optional):**
 
-- testing comments page: https://capsule-igtc.onrender.com/comments
+- testing comments page: click comment icon of the first gallery post
 
 ## Screenshots of Site
 
