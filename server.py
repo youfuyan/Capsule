@@ -62,7 +62,7 @@ def logout():
 
 @app.route("/")
 def header():
-    return render_template('header.html')
+  return render_template('login.html')
 
 
 @app.route("/index", methods=["GET", "POST"])
@@ -103,11 +103,28 @@ def addPost():
 
     # return render_template('add_post.html')
 
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+  return render_template('profile.html')
+
+@app.route("/editProfile", methods=["GET", "POST"])
+def editProfile():
+  return render_template('editProfile.html')
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
     return render_template('search.html')
 
+
+@app.route("/loginPage", methods=["GET", "POST"])
+def loginPage():
+  return render_template('login.html')
+
+
+@app.route("/signUpPage", methods=["GET", "POST"])
+def signUpPage():
+  return render_template('signUp.html')
+  
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

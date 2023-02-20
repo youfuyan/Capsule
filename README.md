@@ -4,11 +4,14 @@ CSCI 5117, Spring 2023, [assignment description](https://canvas.umn.edu/courses/
 
 ## App Info:
 
+This is dev branch.
+
 - Team Name: Capsule
 - App Name: Capsule
-- App Link (deploy on laurayinglu branch): 
-comments page: https://capsule.onrender.com/comments
-add post page: https://capsule.onrender.com/addPost
+
+- App Link (deploy on dev branch): 
+
+https://capsule-igtc.onrender.com
 
 
 ### Students
@@ -30,7 +33,7 @@ add post page: https://capsule.onrender.com/addPost
 
 **Is there anything special we need to know in order to effectively test your app? (optional):**
 
-- ...
+- testing comments page: https://capsule-igtc.onrender.com/comments
 
 ## Screenshots of Site
 
@@ -45,9 +48,14 @@ There are a few tools for mock-ups. Paper prototypes (low-tech, but effective an
 
 In this space please either provide images (around 4) showing your prototypes, OR, a link to an online hosted mock-up tool like moqups.com
 
-**[Add images/photos that show your paper prototype (around 4)](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository) along with a very brief caption:**
+https://www.figma.com/file/t4tzlTlzw1cuJrDizenWRE/Capsule-Prototype?node-id=0%3A1&t=Ao2MbAzyLNCByPPH-1
 
-![](https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif)
+### Preview
+![](./Mockups/1.png "Adding new post")
+![](./Mockups/2.png "Searching")
+![](./Mockups/3.png "Gallery")
+![](./Mockups/4.png "Comments")
+
 
 ## External Dependencies
 
