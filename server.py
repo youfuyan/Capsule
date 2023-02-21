@@ -2,6 +2,7 @@ from flask import *
 import json
 from os import environ as env
 from urllib.parse import quote_plus, urlencode
+import db
 
 from authlib.integrations.flask_client import OAuth
 
@@ -124,6 +125,16 @@ def loginPage():
 @app.route("/signUpPage", methods=["GET", "POST"])
 def signUpPage():
   return render_template('signUp.html')
+
+@app.route("/api/photos/get", methods=['GET'])
+def getPhotosAPI():
+    photos = db.get_photos()
+    
+    json = []
+    for photo in photos:
+        json.append({"id": photo[0], "title": photo[1], "description": photo[2], "location": photo[3], "upload_date": photo[4], "image_url": photo[5], "user_id": photo[6]})
+
+    return jsonify(json)
   
 
 if __name__ == '__main__':
