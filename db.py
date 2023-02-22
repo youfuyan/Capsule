@@ -156,20 +156,20 @@ def remove_saved_photos(user_id, photo_id):
 
 def get_user_by_id(user_id):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM users WHERE id = %s", (user_id))
+        cur.execute("SELECT * FROM username WHERE id = %s", (user_id))
         return cur.fetchone()
 
 
 # create users using auth0 token information(name, email, profileurl), if user already exists, update
 def create_user(name, email, profile_url):
     with get_db_cursor(True) as cur:
-        cur.execute("INSERT INTO users (name, email, profile_url) values (%s,%s,%s) ON CONFLICT (email) DO UPDATE SET name = EXCLUDED.name, profile_url = EXCLUDED.profile_url",
+        cur.execute("INSERT INTO users (username, email, profile_pic_url) values (%s,%s,%s) ON CONFLICT (email) DO UPDATE SET username = EXCLUDED.username, profile_pic_url = EXCLUDED.profile_pic_url",
                     (name, email, profile_url))
 
 
 def get_user_by_name(name):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM users WHERE name = %s", (name))
+        cur.execute("SELECT * FROM users WHERE username = %s", (name))
         return cur.fetchone()
 
 
@@ -184,10 +184,10 @@ def delete_user(id):
         cur.execute("DELETE FROM users WHERE id = %s", (id))
 
 
-def edit_user(id, name, email, profile_pic_ulr):
+def edit_user(id, name, email, profile_pic_url):
     with get_db_cursor(True) as cur:
-        cur.execute("UPDATE users SET name = %s, emial = %s, profile_pic_ulr = %s WHERE id = %s",
-                    (name, email, profile_pic_ulr, id))
+        cur.execute("UPDATE users SET username = %s, email = %s, profile_pic_url = %s WHERE id = %s",
+                    (name, email, profile_pic_url, id))
 
 
 ##############################
