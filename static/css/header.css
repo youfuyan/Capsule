@@ -1,66 +1,116 @@
-
-* {box-sizing: border-box;}
-
-body { 
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+html, body {
+  height: 100%;
+  width: 100%;
 }
 
-.header {
+.heading {
+  /* margin-left: 20px; */
+  background-color: #72ccff;
+  width: 100%;
+  color: white;
+  font-size: 20px;
+}
+
+.heading {
+  /* height: 100%; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: 'Poppins';
+  font-weight: bolder;
+  color: white;
+  letter-spacing:1px;
+  /* text-shadow: 1px 0 #9c9c9c; */
+  font-size: 30px;
+}
+
+.sidebar {
+  height: 100%;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  width: 16%;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+
+.pure-menu {
+  height: 100%;
+  width: 100%;
+}
+
+.pure-menu-heading {
   overflow: hidden;
   background-color: #72CCFF;
-  padding: 7px 7px;
-}
-
-.header a {
-  float: left;
-  text-align: center;
-  padding: 12px;
-  text-decoration: none;
-  font-size: 20px; 
-  line-height: 50px;
-  border-radius: 5px;
-}
-
-.header a.logo {
-  font-size: 50px;
-  font-weight: bold;
+  padding-left: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 37px;
   font-family: 'Poppins';
+  font-weight: bolder;
   color: white;
+  text-transform: none;
+  letter-spacing:1px;
+  text-shadow: 1px 0 #9c9c9c;
+  width: 100%;
+  display: block;
+
 }
 
-.header a:hover {
-  background-color: rgb(50, 93, 211);
-  color: white;
+.pure-menu-list {
+  padding: 7px 7px;
+  padding-top: 1em;
+  margin-left: 2em;
+  /* padding-left: 5px; */
+  font-weight: lighter;
+  font-family: 'Poppins';
 }
 
-.user-img {
-  line-height: 20px;
-  border-radius: 10px;
+.pure-menu-item {
+  font-size: 16px;
+  height: 4em;
 }
 
-.header img:hover {
-  background-color: rgb(50, 93, 211);
-  color: white;
+.pure-u-5-6 {
+  width: 50em;
+  margin-top: 6em;
+  margin-left: 2em;
+  padding-left: 5px;
 }
 
-.header a.active {
-  background-color: dodgerblue;
-  color: white;
-}
-
-.header-right {
-  float: right;
-}
-
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
+/* Hide the vertical line on mobile */
+@media screen and (max-width: 767px) {
+  .sidebar .pure-menu-link:before {
+    display: none;
   }
-  
-  .header-right {
-    float: none;
+}
+
+/* Adjust the layout for tablets and small desktop screens */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .sidebar {
+    width: 25%;
+  }
+  .pure-u-5-6 {
+    width: 75%;
   }
 }
+
+/* Adjust the layout for large desktop screens */
+@media screen and (min-width: 1200px) {
+  .sidebar {
+    width: 16.67%;
+  }
+  .pure-u-5-6 {
+    width: 83.33%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .sidebar {
+    width: 100%;
+    float: none;
+  }
