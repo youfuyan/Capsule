@@ -11,6 +11,10 @@ app = Flask(__name__)
 
 app.secret_key = env.get("FLASK_SECRET")
 
+@app.before_first_request
+def initialize():
+    db.setup()
+
 oauth = OAuth(app)
 
 oauth.register(
@@ -183,8 +187,11 @@ def editPhotoAPI(id):
 @app.route("/api/users/get_all", methods=['GET'])
 def getAllUsersAPI():
     users = db.get_all_users()
-    json = {"id": users[0], "username": users[1], "email": users[2],
-            "profile_pic": users[3], "saved_photos": users[4]}
+    json = []
+    print(users)
+    for user in users:
+        json.append({"id": user[0], "username": user[1], "email": user[2],
+                     "profile_pic": user[3], "saved_photos": user[4]})
     return jsonify(json)
 
 
