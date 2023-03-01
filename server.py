@@ -1,3 +1,7 @@
+# flask blueprint
+# Make a decorator if user is logged in or not -> write function
+# Making sure people who didnt login cant do function
+
 from flask import *
 import json
 from os import environ as env
@@ -214,6 +218,7 @@ def getUserByUsernameAPI(username):
 @app.route("/api/users/create", methods=['POST'])
 def createUserAPI():
     data = request.get_json()
+    
     db.create_user(data['username'], data['email'], data['profile_pic'])
     return jsonify({"success": True})
 
@@ -227,7 +232,7 @@ def deleteUserAPI(id):
 @app.route("/api/users/edit/<id>", methods=['PUT'])
 def editUserAPI(id):
     data = request.get_json()
-    db.edit_user(data['username'], data['email'], data['profile_pic'], id)
+    db.edit_user(id, data['username'], data['email'], data['profile_pic'])
     return jsonify({"success": True})
 
 # Saved Photos

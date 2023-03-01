@@ -163,8 +163,7 @@ def get_user_by_id(user_id):
 # create users using auth0 token information(name, email, profileurl), if user already exists, update
 def create_user(name, email, profile_url):
     with get_db_cursor(True) as cur:
-        cur.execute("INSERT INTO users (username, email, profile_pic_url) values (%s,%s,%s) ON CONFLICT (email) DO UPDATE SET username = EXCLUDED.username, profile_pic_url = EXCLUDED.profile_pic_url",
-                    (name, email, profile_url))
+        cur.execute("INSERT INTO users (username, email, profile_pic_url) values (%s,%s,%s)", (name, email, profile_url))
 
 
 def get_user_by_name(name):
