@@ -67,12 +67,12 @@ def header():
 
 @app.route("/index", methods=["GET", "POST"])
 def index():
-    return render_template('index.html')
+    return render_template('sideBar.html')
 
 
 @app.route("/sideBar", methods=["GET", "POST"])
 def sideBar():
-    return render_template('sideBar.html')
+    return render_template('responsiveSideBar.html')
 
 
 @app.route("/comments", methods=["GET", "POST"])

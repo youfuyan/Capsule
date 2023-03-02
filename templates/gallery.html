@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Vertical Gallery Page</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.1/pure-min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css">
-    <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/gallery.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.1/pure-min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css">
+  <link rel="stylesheet" href="../static/css/gallery.css" />
 </head>
-
 
 <body>
 
-  {% import 'sideBar.html' as sideBar %}
+  {% import 'responsiveSideBar.html' as sideBar %}
 
-    <!-- header and sideBar -->
-    {{ sideBar.header() }}
+  <!-- header and sideBar -->
 
+  {% call sideBar.sideBar() %}
 	<div class="container">
 		<div class="post">
 			<img src="https://picsum.photos/id/10/400/400" alt="Post 2">
@@ -73,9 +71,10 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 	<script src="https://kit.fontawesome.com/your-unique-code.js" crossorigin="anonymous"></script>
+  {% endcall %}
+
 </body>
 </html>

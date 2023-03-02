@@ -1,116 +1,203 @@
-html, body {
-  height: 100%;
-  width: 100%;
-}
+/* for appName CAPSULE */
 
 .heading {
-  /* margin-left: 20px; */
   background-color: #72ccff;
-  width: 100%;
+  width: 100vw;
+  height: 70px;
   color: white;
-  font-size: 20px;
-}
-
-.heading {
-  /* height: 100%; */
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-family: 'Poppins';
-  font-weight: bolder;
-  color: white;
-  letter-spacing:1px;
-  /* text-shadow: 1px 0 #9c9c9c; */
-  font-size: 30px;
-}
-
-.sidebar {
-  height: 100%;
-}
-
-.sidebar {
-  position: sticky;
   top: 0;
-  width: 16%;
-  float: left;
-  box-sizing: border-box;
-  padding: 10px;
-  border-right: 1px solid #ccc;
-}
-
-
-.pure-menu {
-  height: 100%;
-  width: 100%;
-}
-
-.pure-menu-heading {
-  overflow: hidden;
-  background-color: #72CCFF;
-  padding-left: 25px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  font-size: 37px;
+  position: fixed;
+  left: 0;
+  z-index: 1000;
+  padding-left: .5em;
+  display: flex;
   font-family: 'Poppins';
   font-weight: bolder;
-  color: white;
-  text-transform: none;
-  letter-spacing:1px;
-  text-shadow: 1px 0 #9c9c9c;
-  width: 100%;
-  display: block;
-
+  font-size: 40px;
+  line-height: 1.5;
+  align-items: center;
 }
 
-.pure-menu-list {
-  padding: 7px 7px;
-  padding-top: 1em;
-  margin-left: 2em;
-  /* padding-left: 5px; */
-  font-weight: lighter;
+#appName {
   font-family: 'Poppins';
+  font-weight: bolder;
 }
 
-.pure-menu-item {
-  font-size: 16px;
-  height: 4em;
+.heading .a {
+  text-align: center;
+  height: 100%;
+  /* text-decoration: none; 
+  color: inherit; */
 }
 
-.pure-u-5-6 {
-  width: 50em;
-  margin-top: 6em;
-  margin-left: 2em;
-  padding-left: 5px;
+a:link, a:visited, a:hover, a:active { 
+  text-decoration: none; 
+  color: inherit;
 }
 
-/* Hide the vertical line on mobile */
-@media screen and (max-width: 767px) {
-  .sidebar .pure-menu-link:before {
-    display: none;
+/* for nav bar */
+
+#layout {
+  background-color: rgb(222, 222, 222);
+  height: 90vh;
+  position: fixed;
+  left: 0;
+  top: 70px;
+  display: flex;
+  width: 250px;
+}
+
+/*
+Add transition to containers so they can push in and out.
+*/
+#layout,
+#menu,
+.menu-link {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+#layout.active #menu {
+  left: 250px;
+  width: 100%;
+  top: 70px;
+}
+
+#layout.active .menu-link {
+  left: 250px;
+  top: 70px;
+}
+
+#menu {
+  margin-left: -250px;
+  width: 250px;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  bottom: 0;
+  z-index: 1000; /* so the menu or its navicon stays above all content */
+  background: #f6f6f6;
+  overflow-y: auto;
+}
+
+#menu a {
+  color: rgb(128, 128, 128);
+  border: none;
+
+  /* top, right, left, bottom  */
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  text-align: center;
+}
+
+
+/*
+Add that light border to separate items into groups.
+*/
+#menu .pure-menu ul,
+#menu .pure-menu .menu-item-divided {
+    border-top: none;
+}
+
+/*
+Remove all background/borders, since we are applying them to #menu.
+*/
+#menu .pure-menu,
+#menu .pure-menu ul {
+    border: none;
+    background: transparent;
+}
+
+/*
+Add that light border to separate items into groups.
+*/
+#menu .pure-menu ul,
+#menu .pure-menu .menu-item-divided {
+    border-top: none;
+}
+
+/*
+Change color of the anchor links on hover/focus.
+*/
+#menu .pure-menu li a:hover,
+#menu .pure-menu li a:focus {
+    background: rgb(232, 232, 232);
+}
+
+/*
+This styles the selected menu item `<li>`.
+*/
+#menu .pure-menu-selected,
+#menu .pure-menu-heading {
+    background: #72ccff;
+}
+
+/*
+This styles a link within a selected menu item `<li>`.
+*/
+#menu .pure-menu-selected a {
+    color: #fff;
+}
+
+
+/* FOR THE RIGHT BODY PART  */
+#main {
+  background-color: yellowgreen;
+  margin-top: 70px;
+  margin-left: 250px;
+  width: -webkit-fill-available;
+}
+
+
+/* -- Responsive Styles (Media Queries) ------------------------------------- */
+
+/*
+Hides the menu at `48em`, but modify this based on your app's needs.
+*/
+@media (min-width: 48em) {
+  /* .content {
+      padding-left: 2em;
+      padding-right: 2em;
+  } */
+
+  #layout {
+      width: 250px;
   }
+
+  #menu {
+      left: 250px;
+      top: 70px;
+  }
+
+  /* for hamburger button */
+  .menu-link {
+      /* position: fixed; */
+      left: 250px;
+      display: none;
+  }
+
+  #layout.active .menu-link {
+    left: 250px;
+  }
+
 }
 
-/* Adjust the layout for tablets and small desktop screens */
-@media screen and (min-width: 768px) and (max-width: 1199px) {
-  .sidebar {
-    width: 25%;
+@media (max-width: 48em) {
+  /* Only apply this when the window is small. Otherwise, the following
+  case results in extra padding on the left:
+      * Make the window small.
+      * Tap the menu to trigger the active state.
+      * Make the window large again.
+  */
+  #layout.active {
+      position: relative;
+      left: 250px;
   }
-  .pure-u-5-6 {
-    width: 75%;
-  }
-}
 
-/* Adjust the layout for large desktop screens */
-@media screen and (min-width: 1200px) {
-  .sidebar {
-    width: 16.67%;
-  }
-  .pure-u-5-6 {
-    width: 83.33%;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .sidebar {
+  #main {
     width: 100%;
-    float: none;
   }
+}

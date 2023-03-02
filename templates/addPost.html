@@ -2,24 +2,23 @@
 <html>
 
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.1/pure-min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css">
-    <link rel="stylesheet" href="../static/css/header.css">
     <link rel="stylesheet" href="../static/css/addPost.css">
-    
+
   </head>
 
   <body>
 
-    {% import 'sideBar.html' as sideBar %}
+    {% import 'responsiveSideBar.html' as sideBar %}
 
     <!-- header and sideBar -->
-    {{ sideBar.header() }}
 
-    <!-- the right part body  -->
-    <!-- {% block content %} -->
+    {% call sideBar.sideBar() %}
 
     <form id="post-form" class="pure-form pure-form-aligned" method="post">
       <fieldset>
@@ -58,30 +57,30 @@
         <div id="add-location-save">
 
           <!-- <div class="locate"> -->
-            <label for="locate" class="upload-location">
-              <i class="fas fa-map-marker-alt"></i>
-            </label>
-            <input type="text" name="location" id="locate" class="choose-location" placeholder="Location...">
-            <!-- <div id="loc-preview" class="upload-preview"></div> -->
+          <label for="locate" class="upload-location">
+            <i class="fas fa-map-marker-alt"></i>
+          </label>
+          <input type="text" name="location" id="locate" class="choose-location" placeholder="Location...">
+          <!-- <div id="loc-preview" class="upload-preview"></div> -->
           <!-- </div> -->
 
           <!-- <div id="save-post"> -->
-            <!-- post or save as a draft -->
-            <button id="save-draft">
-              <i class="far fa-edit"></i>
-              <br>
-              Save Draft
-            </button>
+          <!-- post or save as a draft -->
+          <button id="save-draft">
+            <i class="far fa-edit"></i>
+            <br>
+            Save Draft
+          </button>
 
-            <button type="submit" class="add-post-button">Post</button>
+          <button type="submit" class="add-post-button">Post</button>
           <!-- </div> -->
         </div>
-      
+
       </fieldset>
     </form>
 
     </div>
-    <!-- {% endblock %} -->
+    {% endcall %}
   </body>
 
   <script src="../static/js/addPost.js"></script>

@@ -2,21 +2,20 @@
 <html>
 
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.1/pure-min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css">
-    <link rel="stylesheet" href="../static/css/header.css">
     <link rel="stylesheet" href="../static/css/comments.css">
-    <script src="../static/js/myjs.js"></script>
   </head>
 
   <body>
-    {% import 'sideBar.html' as sideBar %}
+    {% import 'responsiveSideBar.html' as sideBar %}
 
     <!-- header and sideBar -->
-    {{ sideBar.header() }}
 
+    {%- call sideBar.sideBar() -%}
     <!-- the right part body  -->
     <div class="comments">
       <div class="posted-comments">
@@ -73,8 +72,9 @@
       </div>
 
     </div>
-
-
+    <!-- <script src="../static/js/myjs.js"></script> -->
+    {%- endcall -%}
   </body>
+  
 
 </html>
