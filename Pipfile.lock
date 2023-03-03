@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c6ea538d6fb5b2d4dc150b36ccd46e7d9f16c96a0def3180cecaab3b4a27cfc0"
+            "sha256": "1e8808ef1f9359d0c615d3d7b2f99c889c81d92e80292e1c67f89d2662fd60ed"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -256,6 +256,14 @@
             "markers": "python_version >= '3.5'",
             "version": "==3.4"
         },
+        "imagekitio": {
+            "hashes": [
+                "sha256:c5e288b748272e01f1bea42e3137ed4a25d1f61c19c4c48f6eeaceecb62c6ff1",
+                "sha256:d98c97933a973dfbda7ac4124df8682d5f1126de4fa302dee1645586537f12fa"
+            ],
+            "index": "pypi",
+            "version": "==3.0.1"
+        },
         "itsdangerous": {
             "hashes": [
                 "sha256:2c2349112351b88699d8d4b6b075022c0808887cb7ad10069318a8b0bc88db44",
@@ -419,6 +427,13 @@
             ],
             "index": "pypi",
             "version": "==2.28.2"
+        },
+        "requests-toolbelt": {
+            "hashes": [
+                "sha256:380606e1d10dc85c3bd47bf5a6095f815ec007be7a8b69c878507068df059e6f",
+                "sha256:968089d4584ad4ad7c171454f0a5c6dac23971e9472521ea3b6d49d610aa6fc0"
+            ],
+            "version": "==0.9.1"
         },
         "setuptools": {
             "hashes": [

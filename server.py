@@ -5,10 +5,15 @@
 from flask import *
 import json
 from os import environ as env
+import os
+import base64
 from urllib.parse import quote_plus, urlencode
 import db
 
 from authlib.integrations.flask_client import OAuth
+from imagekitio import ImageKit
+from imagekitio.models.UploadFileRequestOptions import UploadFileRequestOptions
+from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
@@ -64,10 +69,11 @@ def logout():
         )
     )
 
-# @app.before_first_request
-# def initialize():
-#     db.setup()
-
+imagekit = ImageKit(
+    private_key=env.get("IMAGEKIT_PRIVATE_KEY"),
+    public_key=env.get("IMAGEKIT_PUBLIC_KEY"),
+    url_endpoint=env.get("IMAGEKIT_URL_ENDPOINT")
+)
 
 @app.route("/")
 def header():
@@ -91,26 +97,30 @@ def comments():
 
 @app.route("/addPost", methods=["GET", "POST"])
 def addPost():
+    # return render_template('addPost.html')
+    if request.method == 'POST':
+        # Get the form data
+        title = request.form['title']
+        body = request.form['body']
+        location = request.form['location']
+        photo = request.files['image']
+        is_draft = request.form.get('draft') == 'on'
+
+        photo_string = base64.b64encode(photo.read())
+        photo_name = secure_filename(photo.filename)
+    
+        upload = imagekit.upload(file=photo_string, 
+                                 file_name=photo_name, 
+                                 options=UploadFileRequestOptions())
+        print(upload.file_id)
+        print(upload.url)
+
+        # Do something with the form data (e.g. save to a database)
+        db.add_photo(upload.file_id, title, body, location, upload.url, "1")
+
+        return redirect(url_for('index'))
+
     return render_template('addPost.html')
-    #   if request.method == 'POST':
-    #     # Get the form data
-    #     title = request.form['title']
-    #     body = request.form['body']
-    #     location = request.form['location']
-    #     photo = request.files.get('photo')
-    #     is_draft = request.form.get('draft') == 'on'
-
-    #     # Save the photo to disk
-    #     if photo:
-    #         filename = photo.filename
-    #         photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-    #     # Do something with the form data (e.g. save to a database)
-    #     # ...
-
-    #     return redirect(url_for('home'))
-
-    # return render_template('add_post.html')
 
 
 @app.route("/profile", methods=["GET", "POST"])
@@ -167,7 +177,7 @@ def getPhotoAPI(id):
 @app.route("/api/photos/add", methods=['POST'])
 def addPhotoAPI():
     data = request.get_json()
-    db.add_photo(data['title'], data['description'], data['location'],
+    db.add_photo(data['id'], data['title'], data['description'], data['location'],
                  data['upload_date'], data['image_url'], data['user_id'])
     return jsonify({"success": True})
 

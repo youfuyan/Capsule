@@ -7,7 +7,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE photos (
-  id SERIAL PRIMARY KEY,
+  id VARCHAR(100) NOT NULL,
   title VARCHAR(100) NOT NULL,
   description TEXT,
   location VARCHAR(100),

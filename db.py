@@ -50,17 +50,18 @@ def get_db_cursor(commit=False):
 ##############################
 
 
-def add_photo(title, description, location, image_url, user_id):
+def add_photo(id,title, description, location, image_url, user_id):
     # Since we're using connection pooling, it's not as big of a deal to have
     # lots of short-lived cursors (I think -- worth testing if we ever go big)
     with get_db_cursor(True) as cur:
+        current_app.logger.info("Adding id %s", id)
         current_app.logger.info("Adding title %s", title)
         current_app.logger.info("Adding description %s", description)
         current_app.logger.info("Adding location %s", location)
         current_app.logger.info("Adding image_url %s", image_url)
         current_app.logger.info("Adding user_id %s", user_id)
-        cur.execute("INSERT INTO photos (title, description, location, image_url, user_id) values (%s,%s,%s,%s,%s)",
-                    (title, description, location, image_url, user_id))
+        cur.execute("INSERT INTO photos (id, title, description, location, image_url, user_id) values (%s,%s,%s,%s,%s,%s)",
+                    (id, title, description, location, image_url, user_id))
 
 
 def get_photos():
