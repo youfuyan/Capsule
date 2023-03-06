@@ -7,71 +7,82 @@
 {% endblock %}
 
 {% block content %}
-  {% import 'sideBar.html' as sideBar %}
+  {% if session %}
+    {% import 'sideBar.html' as sideBar %}
 
-  <!-- header and sideBar -->
-  {{ sideBar.header() }}
+    <!-- header and sideBar -->
+    {{ sideBar.header() }}
 
-  <!-- the right part body  -->
+    <!-- the right part body  -->
 
-  <form id="post-form" method="post" action="/addPost" enctype="multipart/form-data" class="pure-form pure-form-aligned">
-    <fieldset>
-      {% macro addImages() -%}
-      <div id="add-images">
+    <form id="post-form" method="post" action="/addPost" enctype="multipart/form-data" class="pure-form pure-form-aligned">
+      <fieldset>
+        {% macro addImages() -%}
+        <div id="add-images">
 
-        <div class="upload-box">
-          <label for="file-upload" class="upload-label">
-            <i class="fa fa-plus"></i>
-          </label>
-          <input name="image" type="file" id="file-upload" class="upload-input">
-          <div id="image-preview" class="upload-preview"></div>
+          <div class="upload-box">
+            <label for="file-upload" class="upload-label">
+              <i class="fa fa-plus"></i>
+            </label>
+            <input name="image" type="file" id="file-upload" class="upload-input">
+            <div id="image-preview" class="upload-preview"></div>
+          </div>
+
+        </div>
+        {% endmacro -%}
+
+        <!-- uploading photos -->
+        <div id="upload-images">
+          {{ addImages() }}
+          <!-- {{ addImages() }} -->
         </div>
 
+        <!-- add title -->
+        <div id="add-title">
+          <input id="title" name="title" type="text" placeholder="Add a Title">
+        </div>
+
+        <!-- add body text  -->
+        <div id="add-body">
+          <textarea rows="15" id="body" name="body" rows="10" placeholder="Add text"></textarea>
+        </div>
+
+
+        <!-- add location - optional  -->
+        <div id="add-location-save">
+
+          <!-- <div class="locate"> -->
+            <label for="locate" class="upload-location">
+              <i class="fas fa-map-marker-alt"></i>
+            </label>
+            <input type="text" name="location" id="locate" class="choose-location" placeholder="Location...">
+            <!-- <div id="loc-preview" class="upload-preview"></div> -->
+          <!-- </div> -->
+
+          <!-- <div id="save-post"> -->
+            <!-- post or save as a draft -->
+            <button id="save-draft">
+              <i class="far fa-edit"></i>
+              <br>
+              Save Draft
+            </button>
+
+            <button type="submit" class="add-post-button">Post</button>
+          <!-- </div> -->
+        </div>
+      
+      </fieldset>
+    </form>
+
+    </div>
+  {% else %}
+    <div class="container">
+      <!--capsule-->
+      <div class="heading">
+          Capsule
       </div>
-      {% endmacro -%}
-
-      <!-- uploading photos -->
-      <div id="upload-images">
-        {{ addImages() }}
-        <!-- {{ addImages() }} -->
-      </div>
-
-      <!-- add title -->
-      <div id="add-title">
-        <input id="title" name="title" type="text" placeholder="Add a Title">
-      </div>
-
-      <!-- add body text  -->
-      <div id="add-body">
-        <textarea rows="15" id="body" name="body" rows="10" placeholder="Add text"></textarea>
-      </div>
-
-
-      <!-- add location - optional  -->
-      <div id="add-location-save">
-
-        <!-- <div class="locate"> -->
-          <label for="locate" class="upload-location">
-            <i class="fas fa-map-marker-alt"></i>
-          </label>
-          <input type="text" name="location" id="locate" class="choose-location" placeholder="Location...">
-          <!-- <div id="loc-preview" class="upload-preview"></div> -->
-        <!-- </div> -->
-
-        <!-- <div id="save-post"> -->
-          <!-- post or save as a draft -->
-          <button id="save-draft">
-            <i class="far fa-edit"></i>
-            <br>
-            Save Draft
-          </button>
-
-          <button type="submit" class="add-post-button">Post</button>
-        <!-- </div> -->
-      </div>
-    
-    </fieldset>
-  </form>
-
-  </div>
+      <p>Looks like you have to login</p>
+      <a href="/">Login here</a>
+    </div>
+  {% endif %}
 {% endblock %}

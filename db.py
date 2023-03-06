@@ -157,14 +157,14 @@ def remove_saved_photos(user_id, photo_id):
 
 def get_user_by_id(user_id):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM username WHERE id = %s", (user_id))
+        cur.execute("SELECT * FROM users WHERE id = %s", [user_id])
         return cur.fetchone()
 
 
 # create users using auth0 token information(name, email, profileurl), if user already exists, update
-def create_user(name, email, profile_url):
+def create_user(user_id, name, email, profile_url):
     with get_db_cursor(True) as cur:
-        cur.execute("INSERT INTO users (username, email, profile_pic_url) values (%s,%s,%s)", (name, email, profile_url))
+        cur.execute("INSERT INTO users (id, username, email, profile_pic_url) values (%s, %s,%s,%s)", (user_id, name, email, profile_url))
 
 
 def get_user_by_name(name):
