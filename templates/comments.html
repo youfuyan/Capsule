@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 
 {% block head_others %} 
-  <link rel="stylesheet" href="../static/css/sideBar.css">
   <link rel="stylesheet" href="../static/css/comments.css">
-  <script src="../static/js/myjs.js"></script>
+  <script src="../static/js/myjs.js" defer></script>
 {% endblock %}
 
 {% block content %}
-  {% import 'sideBar.html' as sideBar %}
+  {% import 'responsiveSideBar.html' as sideBar %}
 
   <!-- header and sideBar -->
-  {{ sideBar.header() }}
 
+  {%- call sideBar.sideBar() -%}
   <!-- the right part body  -->
   <div class="comments">
     <div class="posted-comments">
@@ -20,6 +19,24 @@
         <p class="comment-posted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate vel sapien
           eget dapibus. Nunc fringilla fringilla justo, ac interdum arcu efficitur a. Mauris quis neque nulla. Nam id
           efficitur metus.</p>
+      </div>
+
+      <div class="pure-u-1 pure-u-md-1-2 comment-container">
+        <p class="author"><i class="far fa-user fa-lg"></i> Nick</p>
+        <p class="comment-posted">Nullam cursus interdum diam, sed scelerisque velit molestie in. Nam eget justo nec
+          nibh pellentesque accumsan. Donec eget risus nisl. Aenean efficitur lorem nec dolor tincidunt bibendum.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate vel sapien eget dapibus. Nunc
+          fringilla fringilla justo, ac interdum arcu efficitur a. Mauris quis neque nulla. Nam id efficitur metus.
+        </p>
+      </div>
+
+      <div class="pure-u-1 pure-u-md-1-2 comment-container">
+        <p class="author"><i class="far fa-user fa-lg"></i> Nick</p>
+        <p class="comment-posted">Nullam cursus interdum diam, sed scelerisque velit molestie in. Nam eget justo nec
+          nibh pellentesque accumsan. Donec eget risus nisl. Aenean efficitur lorem nec dolor tincidunt bibendum.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate vel sapien eget dapibus. Nunc
+          fringilla fringilla justo, ac interdum arcu efficitur a. Mauris quis neque nulla. Nam id efficitur metus.
+        </p>
       </div>
 
       <div class="pure-u-1 pure-u-md-1-2 comment-container">
@@ -68,4 +85,5 @@
     </div>
 
   </div>
+  {%- endcall -%}
 {% endblock %}

@@ -64,7 +64,6 @@ def callback():
     
     return redirect("/gallery")
 
-
 @app.route("/logout")
 def logout():
     session.clear()
@@ -93,12 +92,12 @@ def header():
 
 @app.route("/index", methods=["GET", "POST"])
 def index():
-    return render_template('index.html')
+    return render_template('sideBar.html')
 
 
 @app.route("/sideBar", methods=["GET", "POST"])
 def sideBar():
-    return render_template('sideBar.html')
+    return render_template('responsiveSideBar.html')
 
 
 @app.route("/comments", methods=["GET", "POST"])
@@ -191,8 +190,6 @@ def loginPage():
 @app.route("/signUpPage", methods=["GET", "POST"])
 def signUpPage():
     return render_template('signUp.html')
-
-
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

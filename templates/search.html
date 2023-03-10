@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       rel="stylesheet"
       type="text/css"
@@ -19,16 +21,16 @@
       href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css"
     />
 
-    <link rel="stylesheet" href="../static/css/sideBar.css" />
     <link rel="stylesheet" href="../static/css/search.css" />
     <script src="../static/js/myjs.js"></script>
   </head>
 
 
   <body>
-    {% import 'sideBar.html' as sideBar %}
-    <!-- <div class="pure-g"> -->
-    {{ sideBar.header() }}
+    {% import 'responsiveSideBar.html' as sideBar %}
+
+    <!-- header and sideBar -->
+    {% call sideBar.sideBar() %}
 
     <!-- the right part body  -->
     <div class="search-container">
@@ -55,7 +57,8 @@
       </div>
     </div>
 
-    <!-- </div> -->
+    {% endcall %}
   </body>
   <script src="../static/js/search.js"></script>
 </html>
+

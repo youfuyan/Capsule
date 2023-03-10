@@ -1,18 +1,14 @@
 {% extends "base.html" %}
 
 {% block head_others %} 
-<link rel="stylesheet" href="../static/css/sideBar.css">
 <link rel="stylesheet" href="../static/css/profile.css">
 {% endblock %}
 
 {% block content %}
-
-  {% import 'sideBar.html' as sideBar %}
+  {% import 'responsiveSideBar.html' as sideBar %}
 
   <!-- header and sideBar -->
-  {{ sideBar.header() }}
-
-  <!-- the right part body  -->
+  {% call sideBar.sideBar() %}
   
   <div class="profile-details pure-g">
     <!-- username here -->
@@ -20,18 +16,17 @@
       <img class="user-icon" src="../static/imgs/user_icon.png" alt="">
     </div>
 
-    <div class="pure-u-1-2">
-      
-      <div class="edit-profile-name pure-g">
-        <div class="pure-u-1-2">
-          <h1>Isabel</h1>
-        </div>
-        <div class="pure-u-1-2">
-          <button class="delete-account-button">Delete Account</button>
-        </div>
-      </div>
+  <div class="pure-u-1-2">
     
+    <div class="edit-profile-name pure-g">
+      <div class="pure-u-1-2">
+        <h1>Isabel</h1>
+      </div>
+      <div class="pure-u-1-2">
+        <button class="delete-account-button">Delete Account</button>
+      </div>
     </div>
+  
   </div>
 
   <div class="edit-profile-form">
@@ -48,4 +43,6 @@
     </form>
   </div>
 
+      
+  {% endcall %}
 {% endblock %}
