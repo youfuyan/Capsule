@@ -17,12 +17,13 @@ from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
-
 app.secret_key = env.get("APP_SECRET_KEY")
+
 
 @app.before_first_request
 def initialize():
     db.setup()
+
 
 oauth = OAuth(app)
 
@@ -52,17 +53,18 @@ def callback():
     token = oauth.auth0.authorize_access_token()
     session["user"] = token
     tokenStr = json.loads(json.dumps(session.get('user')))
-    
+
     user_id = tokenStr["userinfo"]["sub"]
     name = tokenStr["userinfo"]["nickname"]
     email = tokenStr["userinfo"]["email"]
     profile_pic_url = tokenStr["userinfo"]["picture"]
     userExists = db.get_user_by_id(str(user_id))
-    
+
     if not userExists:
         db.create_user(user_id, name, email, profile_pic_url)
-    
+
     return redirect("/gallery")
+
 
 @app.route("/logout")
 def logout():
@@ -79,11 +81,13 @@ def logout():
         )
     )
 
+
 imagekit = ImageKit(
     private_key=env.get("IMAGEKIT_PRIVATE_KEY"),
     public_key=env.get("IMAGEKIT_PUBLIC_KEY"),
     url_endpoint=env.get("IMAGEKIT_URL_ENDPOINT")
 )
+
 
 @app.route("/")
 def header():
@@ -126,15 +130,16 @@ def addPost():
 
             photo_string = base64.b64encode(photo.read())
             photo_name = secure_filename(photo.filename)
-        
-            upload = imagekit.upload(file=photo_string, 
-                                    file_name=photo_name, 
-                                    options=UploadFileRequestOptions())
+
+            upload = imagekit.upload(file=photo_string,
+                                     file_name=photo_name,
+                                     options=UploadFileRequestOptions())
             print(upload.file_id)
             print(upload.url)
 
             # Do something with the form data (e.g. save to a database)
-            db.add_photo(upload.file_id, title, body, location, upload.url, user_id)
+            db.add_photo(upload.file_id, title, body,
+                         location, upload.url, user_id)
 
             return redirect(url_for('galleryPage'))
 
@@ -150,7 +155,7 @@ def profile():
         tokenStr = json.loads(json.dumps(session.get('user')))
         user_id = tokenStr["userinfo"]["sub"]
         photos = db.get_photos_by_user_id(user_id)
-        
+
         return render_template('profile.html', photos=photos, session=getSession)
     else:
         return redirect(url_for('header'))
@@ -166,22 +171,28 @@ def editProfile():
             return render_template('editProfile.html', session=getSession)
     else:
         return redirect(url_for('header'))
-    
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
     getSession = session.get('user')
     if getSession:
-        return render_template('search.html', session=getSession)
+        if request.method == 'POST':
+            query = request.form['query']
+            photos = db.search_photos(query)
+            return render_template('search.html', session=getSession, photos=photos, query=query)
+        else:
+            return render_template('search.html', session=getSession)
     else:
         return redirect(url_for('header'))
+
 
 @app.route("/gallery", methods=["GET", "POST"])
 def galleryPage():
     allPhotos = db.get_photos()
     return render_template('gallery.html', photos=allPhotos)
-    
+
+
 @app.route("/loginPage", methods=["GET", "POST"])
 def loginPage():
     return render_template('login.html')
@@ -190,6 +201,7 @@ def loginPage():
 @app.route("/signUpPage", methods=["GET", "POST"])
 def signUpPage():
     return render_template('signUp.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

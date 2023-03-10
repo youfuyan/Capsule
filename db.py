@@ -50,7 +50,7 @@ def get_db_cursor(commit=False):
 ##############################
 
 
-def add_photo(id,title, description, location, image_url, user_id):
+def add_photo(id, title, description, location, image_url, user_id):
     # Since we're using connection pooling, it's not as big of a deal to have
     # lots of short-lived cursors (I think -- worth testing if we ever go big)
     with get_db_cursor(True) as cur:
@@ -69,10 +69,12 @@ def get_photos():
         cur.execute("SELECT * FROM photos")
         return cur.fetchall()
 
+
 def get_photos_by_user_id(user_id):
     with get_db_cursor() as cur:
         cur.execute("SELECT * FROM photos WHERE user_id = %s", [user_id])
         return cur.fetchall()
+
 
 def edit_photo(id, title, description, location, image_url):
     with get_db_cursor(True) as cur:
@@ -83,6 +85,14 @@ def edit_photo(id, title, description, location, image_url):
 def delete_photo(id):
     with get_db_cursor(True) as cur:
         cur.execute("DELETE FROM photos WHERE id = %s", (id))
+
+
+def search_photos(query):
+    with get_db_cursor() as cur:
+        cur.execute(
+            "SELECT * FROM photos WHERE to_tsvector('english', title || ' ' || description) @@ to_tsquery('english', %s)", (query,))
+        return cur.fetchall()
+
 
 ##############################
 # Likes
@@ -168,7 +178,8 @@ def get_user_by_id(user_id):
 # create users using auth0 token information(name, email, profileurl), if user already exists, update
 def create_user(user_id, name, email, profile_url):
     with get_db_cursor(True) as cur:
-        cur.execute("INSERT INTO users (id, username, email, profile_pic_url) values (%s, %s,%s,%s)", (user_id, name, email, profile_url))
+        cur.execute("INSERT INTO users (id, username, email, profile_pic_url) values (%s, %s,%s,%s)",
+                    (user_id, name, email, profile_url))
 
 
 def get_user_by_name(name):

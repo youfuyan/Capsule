@@ -7,7 +7,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE photos (
-  id VARCHAR(100) NOT NULL,
+  id VARCHAR(100) PRIMARY KEY,
   title VARCHAR(100) NOT NULL,
   description TEXT,
   location VARCHAR(100),
@@ -18,8 +18,8 @@ CREATE TABLE photos (
 
 CREATE TABLE likes (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users(id),
-  photo_id INTEGER NOT NULL REFERENCES photos(id),
+  user_id VARCHAR(256) NOT NULL REFERENCES users(id),
+  photo_id VARCHAR(100) NOT NULL REFERENCES photos(id),
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
@@ -27,13 +27,15 @@ CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   text TEXT NOT NULL,
   user_id VARCHAR(256) NOT NULL REFERENCES users(id),
-  photo_id INTEGER NOT NULL REFERENCES photos(id),
+  photo_id VARCHAR(100) NOT NULL REFERENCES photos(id),
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE saved_photos (
   id SERIAL PRIMARY KEY,
   user_id VARCHAR(256) NOT NULL REFERENCES users(id),
-  photo_id INTEGER NOT NULL REFERENCES photos(id),
+  photo_id VARCHAR(100) NOT NULL REFERENCES photos(id),
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
+
+CREATE INDEX idx_photos_search ON photos USING gin(to_tsvector('english', title || ' ' || description));
