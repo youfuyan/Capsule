@@ -69,6 +69,10 @@ def get_photos():
         cur.execute("SELECT * FROM photos")
         return cur.fetchall()
 
+def get_photos_by_user_id(user_id):
+    with get_db_cursor() as cur:
+        cur.execute("SELECT * FROM photos WHERE user_id = %s", [user_id])
+        return cur.fetchall()
 
 def edit_photo(id, title, description, location, image_url):
     with get_db_cursor(True) as cur:

@@ -147,7 +147,11 @@ def addPost():
 def profile():
     getSession = session.get('user')
     if getSession:
-        return render_template('profile.html', session=getSession)
+        tokenStr = json.loads(json.dumps(session.get('user')))
+        user_id = tokenStr["userinfo"]["sub"]
+        photos = db.get_photos_by_user_id(user_id)
+        
+        return render_template('profile.html', photos=photos, session=getSession)
     else:
         return redirect(url_for('header'))
 
@@ -175,12 +179,8 @@ def search():
 
 @app.route("/gallery", methods=["GET", "POST"])
 def galleryPage():
-    getSession = session.get('user')
-    if getSession:
-        allPhotos = db.get_photos()
-        return render_template('gallery.html', photos=allPhotos, session=getSession)
-    else:
-        return redirect(url_for('header'))
+    allPhotos = db.get_photos()
+    return render_template('gallery.html', photos=allPhotos)
     
 @app.route("/loginPage", methods=["GET", "POST"])
 def loginPage():
