@@ -59,6 +59,11 @@ body {
 	cursor:auto  
 }
 
+/* change this to desired color */
+.is-liked{
+	color: yellow;
+}
+
 
 /* .post-icons .like-icon .pure-menu-link {
   display: flex;

@@ -111,19 +111,19 @@ def add_like(user_id, photo_id):
 
 def get_likes_by_user_id(user_id):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM likes WHERE user_id = %s", (user_id))
+        cur.execute("SELECT * FROM likes WHERE user_id = %s", [user_id])
         return cur.fetchall()
 
 
 def get_likes_by_photo_id(photo_id):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM likes WHERE photo_id = %s", (photo_id))
+        cur.execute("SELECT * FROM likes WHERE photo_id = %s", [photo_id])
         return cur.fetchall()
 
 
-def remove_like(id):
+def remove_like(user_id, photo_id):
     with get_db_cursor(True) as cur:
-        cur.execute("DELETE FROM photos WHERE id = %s", (id))
+        cur.execute("DELETE FROM likes WHERE user_id = %s AND photo_id = %s", (user_id, photo_id))
 
 ##############################
 # Saved Photos

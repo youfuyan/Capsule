@@ -8,7 +8,7 @@ from os import environ as env
 import base64
 from urllib.parse import quote_plus, urlencode
 import db
-import api
+from api import api
 
 from authlib.integrations.flask_client import OAuth
 from imagekitio import ImageKit
@@ -19,6 +19,8 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 app.secret_key = env.get("APP_SECRET_KEY")
 
+
+app.register_blueprint(api)
 
 @app.before_first_request
 def initialize():
@@ -189,8 +191,14 @@ def search():
 
 @app.route("/gallery", methods=["GET", "POST"])
 def galleryPage():
+    getSession = session.get('user')
     allPhotos = db.get_photos()
-    return render_template('gallery.html', photos=allPhotos)
+    if getSession:
+        tokenStr = json.loads(json.dumps(session.get('user')))
+        sessionStr = tokenStr["userinfo"]
+        return render_template('gallery.html', session=sessionStr, photos=allPhotos)
+    else:
+        return render_template('gallery.html', photos=allPhotos)
 
 
 @app.route("/loginPage", methods=["GET", "POST"])
@@ -205,3 +213,4 @@ def signUpPage():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
+
