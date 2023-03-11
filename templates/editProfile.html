@@ -1,61 +1,48 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-  <head>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.1/pure-min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css">
-    <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/profile.css">
-  </head>
+{% block head_others %} 
+<link rel="stylesheet" href="../static/css/profile.css">
+{% endblock %}
 
-  <body>
+{% block content %}
+  {% import 'responsiveSideBar.html' as sideBar %}
 
-    {% import 'sideBar.html' as sideBar %}
+  <!-- header and sideBar -->
+  {% call sideBar.sideBar() %}
+  
+  <div class="profile-details pure-g">
+    <!-- username here -->
+    <div class="profile-icon pure-u-1-2">
+      <img class="user-icon" src="../static/imgs/user_icon.png" alt="">
+    </div>
 
-    <!-- header and sideBar -->
-    {{ sideBar.header() }}
-
-    <!-- the right part body  -->
-    <!-- {% block content %} -->
+  <div class="pure-u-1-2">
     
-    <div class="profile-details pure-g">
-      <!-- username here -->
-      <div class="profile-icon pure-u-1-2">
-        <img class="user-icon" src="../static/imgs/user_icon.png" alt="">
-      </div>
-
+    <div class="edit-profile-name pure-g">
       <div class="pure-u-1-2">
-        
-        <div class="edit-profile-name pure-g">
-          <div class="pure-u-1-2">
-            <h1>Isabel</h1>
-          </div>
-          <div class="pure-u-1-2">
-            <button class="delete-account-button">Delete Account</button>
-          </div>
-        </div>
-      
+        <h1>Isabel</h1>
+      </div>
+      <div class="pure-u-1-2">
+        <button class="delete-account-button">Delete Account</button>
       </div>
     </div>
+  
+  </div>
 
-    <div class="edit-profile-form">
-      <form class="pure-form pure-form-stacked" action="/editProfile" method="post">
-        <fieldset>
-          <label for="email"><h3>Change Email</h3></label>
-          <input type="email" class="pure-input-rounded">
-          <label for="username"><h3>Change Username</h3></label>
-          <input type="text" class="pure-input-rounded">
-          <label for="password"><h3>Change Password</h3></label>
-          <input type="password" class="pure-input-rounded">
-          <button class="edit-save-button" type="submit">Save</button>
-        </fieldset>
-      </form>
-    </div>
+  <div class="edit-profile-form">
+    <form class="pure-form pure-form-stacked" action="/editProfile" method="post">
+      <fieldset>
+        <label for="email"><h3>Change Email</h3></label>
+        <input type="email" class="pure-input-rounded">
+        <label for="username"><h3>Change Username</h3></label>
+        <input type="text" class="pure-input-rounded">
+        <label for="password"><h3>Change Password</h3></label>
+        <input type="password" class="pure-input-rounded">
+        <button class="edit-save-button" type="submit">Save</button>
+      </fieldset>
+    </form>
+  </div>
 
-        
-    <!-- {% endblock %} -->
-  </body>
-
-</html>
+      
+  {% endcall %}
+{% endblock %}

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -19,43 +21,51 @@
       href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css"
     />
 
-    <link rel="stylesheet" href="../static/css/header.css" />
     <link rel="stylesheet" href="../static/css/search.css" />
     <script src="../static/js/myjs.js"></script>
   </head>
 
-
   <body>
-    {% import 'sideBar.html' as sideBar %}
-    <!-- <div class="pure-g"> -->
-    {{ sideBar.header() }}
+    {% import 'responsiveSideBar.html' as sideBar %}
+
+    <!-- header and sideBar -->
+    {% call sideBar.sideBar() %}
 
     <!-- the right part body  -->
     <div class="search-container">
-      <form action="">
-        <input type="text" placeholder="Search..." name="search" />
+      <form action="/search" method="POST">
+        <input type="text" placeholder="Search..." name="query" />
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
     </div>
-    <div class="pure-g">
-      <div class="pure-u-1-3">
-        <img src="https://picsum.photos/id/10/400/400" alt="travel photo" />
-        <img src="https://picsum.photos/id/20/400/400" alt="travel photo" />
-        <img src="https://picsum.photos/id/30/400/400" alt="travel photo" />
-      </div>
-      <div class="pure-u-1-3">
-        <img src="https://picsum.photos/id/40/400/400" alt="travel photo" />
-        <img src="https://picsum.photos/id/50/400/400" alt="travel photo" />
-        <img src="https://picsum.photos/id/60/400/400" alt="travel photo" />
-      </div>
-      <div class="pure-u-1-3">
-        <img src="https://picsum.photos/id/70/400/400" alt="travel photo" />
-        <img src="https://picsum.photos/id/80/400/400" alt="travel photo" />
-        <img src="https://picsum.photos/id/90/400/400" alt="travel photo" />
-      </div>
-    </div>
 
-    <!-- </div> -->
+    {% block content %}
+    <h1>Search Results</h1>
+
+    {% if query %}
+    <p>You searched for "{{ query }}".</p>
+    {% if photos %}
+    <ul class="pure-g">
+      {% for photo in photos %}
+      <li class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3">
+        <a href="{{ photo.image_url }}">
+          <img src="{{ photo.image_url }}" alt="{{ photo.title }}" />
+        </a>
+        <h2>{{ photo.title }}</h2>
+        {% if photo.description %}
+        <p>{{ photo.description }}</p>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found.</p>
+    <div class="pure-g">
+      <img src="https://picsum.photos/id/10/400/400" alt="travel photo" />
+    </div>
+    {% endif %} {% else %}
+    <p>No search query entered.</p>
+    {% endif %} {% endblock %} {% endcall %}
   </body>
   <script src="../static/js/search.js"></script>
 </html>

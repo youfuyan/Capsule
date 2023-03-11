@@ -1,81 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "base.html" %}
+
+{% block head_others %} 
 	<title>Vertical Gallery Page</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.1/pure-min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css">
-    <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/gallery.css" />
-</head>
+	<link rel="stylesheet" href="../static/css/gallery.css" />
+{% endblock %}
 
+{% block content %}
 
-<body>
+  {% import 'responsiveSideBar.html' as sideBar %}
 
-  {% import 'sideBar.html' as sideBar %}
+  <!-- header and sideBar -->
 
-    <!-- header and sideBar -->
-    {{ sideBar.header() }}
-
+  {% call sideBar.sideBar() %}
 	<div class="container">
-		<div class="post">
-			<img src="https://picsum.photos/id/10/400/400" alt="Post 2">
-			<div class="post-details">
-				<h2>Post Title 1</h2>
-				<p>Post description goes here...</p>
-				<div class="post-icons">
-					<span class="like-icon">
-            <i class="fa fa-thumbs-up"></i>500
-            <a href="/comments"><i class="fa fa-comment"></i> 100</a>
-            <i class="fa fa-bookmark"></i></span>
+		{% for photo in photos %}
+			<div class="post">
+				<img src="{{photo.image_url}}" alt="Post">
+				<div class="post-details">
+					<h2>{{photo.title}}</h2>
+					<p>{{photo.description}}</p>
+					<div class="post-icons">
+						<span class="like-icon"><i class="fa fa-thumbs-up"></i>500<i class="fa fa-comment"></i>100<i class="fa fa-bookmark"></i></span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="post">
-			<img src="https://picsum.photos/id/20/400/400" alt="Post 2">
-			<div class="post-details">
-				<h2>Post Title 2</h2>
-				<p>Post description goes here...</p>
-				<div class="post-icons">
-					<span class="like-icon"><i class="fa fa-thumbs-up"></i>200<i class="fa fa-comment"></i>50<i class="fa fa-bookmark"></i></span>
-				</div>
-			</div>
-		</div>
-		<div class="post">
-			<img src="https://picsum.photos/id/30/400/400" alt="Post 3">
-			<div class="post-details">
-				<h2>Post Title 3</h2>
-				<p>Post description goes here...</p>
-				<div class="post-icons">
-					<span class="like-icon"><i class="fa fa-thumbs-up"></i>415<i class="fa fa-comment"></i>36<i class="fa fa-bookmark"></i></span>
-				</div>
-			</div>
-		</div>
-        <div class="post">
-			<img src="https://picsum.photos/id/60/400/400" alt="Post 3">
-			<div class="post-details">
-				<h2>Post Title 4</h2>
-				<p>Post description goes here...</p>
-				<div class="post-icons">
-					<span class="like-icon"><i class="fa fa-thumbs-up"></i>600<i class="fa fa-comment"></i>150<i class="fa fa-bookmark"></i></span>
-				</div>
-			</div>
-		</div>
-        <div class="post">
-			<img src="https://picsum.photos/id/90/400/400" alt="Post 3">
-			<div class="post-details">
-				<h2>Post Title 5</h2>
-				<p>Post description goes here...</p>
-				<div class="post-icons">
-					<span class="like-icon"><i class="fa fa-thumbs-up"></i>400<i class="fa fa-comment"></i>58<i class="fa fa-bookmark"></i></span>
-				</div>
-			</div>
-		</div>
-
+		{% endfor %}
 	</div>
 
 	<script src="https://kit.fontawesome.com/your-unique-code.js" crossorigin="anonymous"></script>
-</body>
-</html>
+  {% endcall %}
+{% endblock %}
