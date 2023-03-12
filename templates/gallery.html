@@ -20,7 +20,11 @@
 					<h2>{{photo.title}}</h2>
 					<p>{{photo.description}}</p>
 					<div class="post-icons">
-						<span class="like-icon"><i class="fa fa-thumbs-up"></i>500<i class="fa fa-comment"></i>100<i class="fa fa-bookmark"></i></span>
+						<span class="like-icon"> <i class="fa fa-thumbs-up"></i> 500 
+            <!-- <i class="fa fa-comment"></i> 100  -->
+            <a href="/comments/{{photo.id}}" id="comment" uid={{photo.id}}><i class="fa fa-comment"></i> 100</a>
+            <i class="fa fa-bookmark"></i>
+          </span>
 					</div>
 				</div>
 			</div>
@@ -28,5 +32,6 @@
 	</div>
 
 	<script src="https://kit.fontawesome.com/your-unique-code.js" crossorigin="anonymous"></script>
+  <script src="../static/js/gallery.js"></script>
   {% endcall %}
 {% endblock %}

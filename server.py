@@ -104,11 +104,25 @@ def sideBar():
     return render_template('responsiveSideBar.html')
 
 
-@app.route("/comments", methods=["GET", "POST"])
-def comments():
+@app.route("/comments/<id>", methods=["GET", "POST"])
+def comments(id):
     getSession = session.get('user')
     if getSession:
-        return render_template('comments.html', session=getSession)
+      # for submitting the new comment
+      if request.method == 'POST':
+        tokenStr = json.loads(json.dumps(session.get('user')))
+        user_id = tokenStr["userinfo"]["sub"]
+        photo_id = id
+        newComment = request.form['comment']
+        print(newComment)
+        db.create_comment(user_id, photo_id, newComment)
+        return redirect(url_for('comments', id=id))
+        # return render_template('comments.html', session=getSession, comments=allComments)
+      
+      # for get request
+      else:
+        allComments = db.get_comments_by_photo_id(id)
+        return render_template('comments.html', session=getSession, comments=allComments)
     else:
         return redirect(url_for('header'))
 
@@ -153,6 +167,7 @@ def profile():
     getSession = session.get('user')
     if getSession:
         tokenStr = json.loads(json.dumps(session.get('user')))
+        # print(tokenStr)
         user_id = tokenStr["userinfo"]["sub"]
         photos = db.get_photos_by_user_id(user_id)
 
