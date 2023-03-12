@@ -12,17 +12,17 @@
   <!-- header and sideBar -->
 
   {% call sideBar.sideBar() %}
-	<div class="container">
+	<div id="{{session.sub}}" class="owner-id-gallery-page container">
 		{% for photo in photos %}
-			<div class="post">
+			<div id="{{photo.id}}" class="post post-{{loop.index}}">
 				<img src="{{photo.image_url}}" alt="Post">
 				<div class="post-details">
 					<h2>{{photo.title}}</h2>
 					<p>{{photo.description}}</p>
 					<div class="post-icons">
-						<span class="like-icon"> <i class="fa fa-thumbs-up"></i> 500 
+						<span class="like-icon"> <i class="fa fa-thumbs-up"></i> <span>500</span>
             <!-- <i class="fa fa-comment"></i> 100  -->
-            <a href="/comments/{{photo.id}}" id="comment" uid={{photo.id}}><i class="fa fa-comment"></i> 100</a>
+            <a href="/comments/{{photo.id}}" id="comment" uid={{photo.id}}><i class="fa fa-comment"></i> <span id="comment-num">100</span></a>
             <i class="fa fa-bookmark"></i>
           </span>
 					</div>

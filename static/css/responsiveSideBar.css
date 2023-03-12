@@ -203,8 +203,8 @@ small screens.
 
 /* for the right side body  */
 #main {
+  width: 80%;
   margin-top: 5em;
-  width: 100%;
   position:absolute;
   right: 0;
   left: 250px;
@@ -272,9 +272,9 @@ Hides the menu at `48em`, but modify this based on your app's needs.
       left: 250px;
   }
 
-  #main {
+  /* #main {
     width: 100%;
-  }
+  } */
 }
 
 @media (max-width: 48em) {
