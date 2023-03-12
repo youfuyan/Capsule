@@ -172,7 +172,24 @@ def profile():
         # print(tokenStr)
         user_id = tokenStr["userinfo"]["sub"]
         photos = db.get_photos_by_user_id(user_id)
+        print(photos)
 
+        return render_template('profile.html', photos=photos, session=getSession)
+    else:
+        return redirect(url_for('header'))
+    
+@app.route("/liked", methods=["GET", "POST"])
+def liked():
+    getSession = session.get('user')
+    if getSession:
+        tokenStr = json.loads(json.dumps(session.get('user')))
+        user_id = tokenStr["userinfo"]["sub"]
+        personal_likes = db.get_likes_by_user_id(user_id)
+        photos = []
+        for personal_like in personal_likes:
+            photo = db.get_photo_by_image_id(personal_like["photo_id"])
+            photos.append(photo)
+        
         return render_template('profile.html', photos=photos, session=getSession)
     else:
         return redirect(url_for('header'))

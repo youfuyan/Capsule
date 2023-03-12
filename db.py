@@ -75,6 +75,10 @@ def get_photos_by_user_id(user_id):
         cur.execute("SELECT * FROM photos WHERE user_id = %s", [user_id])
         return cur.fetchall()
 
+def get_photo_by_image_id(image_id):
+    with get_db_cursor() as cur:
+        cur.execute("SELECT * FROM photos WHERE id = %s", [image_id])
+        return cur.fetchone()
 
 def edit_photo(id, title, description, location, image_url):
     with get_db_cursor(True) as cur:
@@ -113,6 +117,11 @@ def get_likes_by_user_id(user_id):
     with get_db_cursor() as cur:
         cur.execute("SELECT * FROM likes WHERE user_id = %s", [user_id])
         return cur.fetchall()
+    
+def get_likes_by_user_id_photo_id(user_id, photo_id):
+    with get_db_cursor() as cur:
+        cur.execute("SELECT * FROM likes WHERE user_id = %s AND photo_id = %s", [user_id, photo_id])
+        return cur.fetchone()
 
 
 def get_likes_by_photo_id(photo_id):

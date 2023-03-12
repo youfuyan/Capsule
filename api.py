@@ -175,12 +175,18 @@ def editCommentAPI(id):
 # Likes
 
 
-@api.route("/api/likes/create", methods=['POST'])
-def createLikeAPI():
+@api.route("/api/likes/create/<user_id>/<photo_id>", methods=['POST'])
+def createLikeAPI(user_id, photo_id):
     data = request.get_json()
-    db.add_like(data['user_id'], data['photo_id'])
-    return jsonify({"success": True})
-
+    user_id = "auth0|" + user_id
+    
+    like = db.get_likes_by_user_id_photo_id(user_id, photo_id)
+    if like:
+        return jsonify({"success": False})
+    else:
+        db.add_like(user_id, photo_id)
+        return jsonify({"success": True})
+        
 
 @api.route("/api/likes/get/photo/<photo_id>", methods=['GET'])
 def getLikesbyPhotoIdAPI(photo_id):

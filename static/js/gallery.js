@@ -1,6 +1,7 @@
 async function handleAddLike(userId, photoId){
     try{
-        let res = await fetch("/api/likes/create", {
+        let fetchURL = "/api/likes/create/" + userId + "/" + photoId;
+        let res = await fetch(fetchURL, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -83,16 +84,17 @@ function likeFunctionality(){
             let photoId = photo.id;
 
             let userIdRaw = document.getElementsByClassName("owner-id-gallery-page")[0].id;
+            let userId = userIdRaw.split("|")[1];
             
-            if(photo.querySelector(".like-button").classList.contains("is-liked")){
-                let userId = userIdRaw.split("|")[1];
-                handleRemoveLike(userId, photoId).then();
-                photo.querySelector(".like-button").classList.remove("is-liked");
-            } else{
-                handleAddLike(userIdRaw, photoId).then();
-            }
-            personalLikesCheck();
-            generalLikesCheck();
+            handleAddLike(userId, photoId).then((status) =>{
+                console.log(status);
+                if(!status.success){
+                    handleRemoveLike(userId, photoId).then(() => photo.querySelector(".like-button").classList.remove("is-liked"));
+                    
+                }
+                personalLikesCheck();
+                generalLikesCheck();
+            });
     
         })
     })
