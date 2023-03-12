@@ -175,10 +175,9 @@ def editCommentAPI(id):
 # Likes
 
 
-@api.route("/api/likes/create/<user_id>/<photo_id>", methods=['POST'])
-def createLikeAPI(user_id, photo_id):
-    data = request.get_json()
-    user_id = "auth0|" + user_id
+@api.route("/api/likes/create/<provider>/<user_id>/<photo_id>", methods=['POST'])
+def createLikeAPI(provider, user_id, photo_id):
+    user_id = provider + "|" + user_id
     
     like = db.get_likes_by_user_id_photo_id(user_id, photo_id)
     if like:
@@ -197,9 +196,9 @@ def getLikesbyPhotoIdAPI(photo_id):
     return jsonify(json)
 
 
-@api.route("/api/likes/get/user/<user_id>", methods=['GET'])
-def getLikesbyUserIdAPI(user_id):
-    user_id = "auth0|" + user_id
+@api.route("/api/likes/get/user/<provider>/<user_id>", methods=['GET'])
+def getLikesbyUserIdAPI(provider, user_id):
+    user_id = provider + "|" + user_id
     likes = db.get_likes_by_user_id(user_id)
     json = []
     for like in likes:
@@ -207,8 +206,8 @@ def getLikesbyUserIdAPI(user_id):
     return jsonify(json)
 
 
-@api.route("/api/likes/delete/<user_id>/<photo_id>", methods=['DELETE'])
-def deleteLikeAPI(user_id, photo_id):
-    user_id = "auth0|" + user_id
+@api.route("/api/likes/delete/<provider>/<user_id>/<photo_id>", methods=['DELETE'])
+def deleteLikeAPI(provider, user_id, photo_id):
+    user_id = provider + "|" + user_id
     db.remove_like(user_id, photo_id)
     return jsonify({"success": True})

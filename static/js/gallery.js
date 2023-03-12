@@ -1,6 +1,6 @@
-async function handleAddLike(userId, photoId){
+async function handleAddLike(provider, userId, photoId){
     try{
-        let fetchURL = "/api/likes/create/" + userId + "/" + photoId;
+        let fetchURL = "/api/likes/create/" + provider + "/" + userId + "/" + photoId;
         let res = await fetch(fetchURL, {
             method: 'POST',
             headers: {
@@ -16,9 +16,9 @@ async function handleAddLike(userId, photoId){
     }
 }
 
-async function handleRemoveLike(userId, photoId){
+async function handleRemoveLike(provider, userId, photoId){
     try{
-        let fetchURL = "/api/likes/delete/" + userId + "/" + photoId;
+        let fetchURL = "/api/likes/delete/" + provider + "/" + userId + "/" + photoId;
         let res = await fetch(fetchURL, {
             method: 'DELETE'
         });
@@ -29,9 +29,9 @@ async function handleRemoveLike(userId, photoId){
     }
 }
 
-async function handleGetLikesUser(userId){
+async function handleGetLikesUser(provider, userId){
     try{
-        let fetchURL = "/api/likes/get/user/" + userId;
+        let fetchURL = "/api/likes/get/user/" + provider + "/" + userId;
         let res = await fetch(fetchURL, {
             method: 'GET'
         });
@@ -55,23 +55,6 @@ async function handleGetLikesPhoto(photoId){
     }
 }
 
-async function handleCheckLike(userId, photoId){
-    try{
-        let res = await fetch("/api/likes/create", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({user_id: userId, photo_id: photoId})
-        });
-        return res.json();
-    }
-    catch(error){
-        return "Error";
-    }
-}
-
 function likeFunctionality(){
     document.querySelectorAll('.like-button').forEach(button =>{
         button.addEventListener('click', (e) => {
@@ -84,12 +67,13 @@ function likeFunctionality(){
             let photoId = photo.id;
 
             let userIdRaw = document.getElementsByClassName("owner-id-gallery-page")[0].id;
+            let provider = userIdRaw.split("|")[0];
             let userId = userIdRaw.split("|")[1];
             
-            handleAddLike(userId, photoId).then((status) =>{
+            handleAddLike(provider, userId, photoId).then((status) =>{
                 console.log(status);
                 if(!status.success){
-                    handleRemoveLike(userId, photoId).then(() => photo.querySelector(".like-button").classList.remove("is-liked"));
+                    handleRemoveLike(provider, userId, photoId).then(() => photo.querySelector(".like-button").classList.remove("is-liked"));
                     
                 }
                 personalLikesCheck();
@@ -102,9 +86,10 @@ function likeFunctionality(){
 
 function personalLikesCheck(){
     let userIdRaw = document.getElementsByClassName("owner-id-gallery-page")[0].id;
+    let provider = userIdRaw.split("|")[0];
     let userId = userIdRaw.split("|")[1];
     
-    handleGetLikesUser(userId).then((likes) => {
+    handleGetLikesUser(provider, userId).then((likes) => {
         if (likes.length > 0){
             likes.forEach((like) => {
                 let photoElement = document.getElementById(like.photo_id);
