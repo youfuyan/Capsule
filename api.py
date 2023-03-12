@@ -146,7 +146,7 @@ def getCommentsbyPhotoIdAPI(photo_id):
     json = []
     for comment in comments:
         json.append({"id": comment[0], "comment": comment[1],
-                    "user_id": comment[2], "photo_id": comment[3], })
+                    "user_id": comment[2], "photo_id": comment[3] })
     return jsonify(json)
 
 

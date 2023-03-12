@@ -68,3 +68,16 @@ body {
 /* .post-icons .like-icon .pure-menu-link {
   display: flex;
 } */
+
+
+.like-number{
+	display:inline-block;
+}
+
+.comment-number{
+	display:inline-block;
+}
+
+#comment{
+	margin-left: .5em;
+}

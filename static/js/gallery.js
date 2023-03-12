@@ -129,6 +129,32 @@ function generalLikesCheck(){
     
 }
 
+
+async function handleGetCommentsPhoto(photoId){
+  try{
+      let fetchURL = "/api/comments/get/" + photoId;
+      let res = await fetch(fetchURL, {
+          method: 'GET'
+      });
+      return res.json();
+  }
+  catch(error){
+      return "Error";
+  }
+}
+
+function handleCommentNumber() {
+  let posts = document.querySelectorAll(".post");
+    posts.forEach((post) => {
+        photoId = post.id;
+
+        handleGetCommentsPhoto(photoId).then((data) => {
+            let commentElement = post.querySelector(".comment-number");
+            commentElement.innerHTML = data.length;
+        })
+    })
+}
+
 function main(){
     // for changing like color based on whether the user liked or not
     personalLikesCheck();
@@ -138,6 +164,9 @@ function main(){
 
     // listener to like or not like and store them
     likeFunctionality();
+
+      // for checking the comment numbers of each photos
+    handleCommentNumber();
 }
 
 main();
