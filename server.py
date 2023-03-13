@@ -6,9 +6,11 @@ from flask import *
 import json
 from os import environ as env
 import base64
-from urllib.parse import quote_plus, urlencode
+from urllib.parse import quote_plus, urlencode, quote
 import db
 import api
+import http.client
+
 
 from authlib.integrations.flask_client import OAuth
 from imagekitio import ImageKit
@@ -38,6 +40,20 @@ oauth.register(
 )
 
 # AUTH0
+# connection = http.client.HTTPSConnection(env.get("AUTH0_DOMAIN"))
+# payload = "{\"client_id\":\"" + env.get("AUTH0_CLIENT_ID") + "\",\"client_secret\":\"" + env.get("AUTH0_CLIENT_SECRET") + "\",\"audience\":\"https://" + env.get("AUTH0_DOMAIN") + "/api/v2/\",\"grant_type\":\"client_credentials\"}"
+# headers = { 'content-type': "application/json" }
+# connection.request("POST", "/oauth/token", payload, headers)
+
+# res = connection.getresponse()
+# data = res.read()
+# data_json = json.loads(data)
+# auth_access_token = data_json['access_token']
+# access_token = data.decode("utf-8").access_token
+
+
+
+
 
 
 @app.route("/login")
@@ -165,12 +181,44 @@ def profile():
 def editProfile():
     getSession = session.get('user')
     if getSession:
+        tokenStr = json.loads(json.dumps(session.get('user')))
+        user_id = tokenStr["userinfo"]["sub"]
+        # print(request.method)
+        # print(quote(user_id))
         if request.method == 'POST':
-            return redirect(url_for('profile'))
+        #     print("in the thing")
+        #     username = request.form['username']
+        #     conn = http.client.HTTPConnection(env.get("AUTH0_DOMAIN"))
+        #     headers = {'authorization': "Bearer " + auth_access_token,
+        #                 'nickname':username,
+        #                 "connection": "Initial-Connection",
+        #                 'client_id': env.get("AUTH0_CLIENT_ID")}
+        #     # conn.request("PATCH", "/api/v2/users/" + quote(user_id), headers=headers)
+        #     conn.request("GET", "/api/v2/users")
+        #     res= conn.getresponse()
+        #     data=res.read()
+        #     print(json.loads(data))
+            # print(data.decode("utf-8"))
+            # return redirect(
+            #     "https://" + env.get("AUTH0_DOMAIN")
+            #     + "/api/v2/users/" + quote(user_id) + "?"
+            #     + urlencode(
+            #         {
+            #             "authorization": "Bearer " + auth_access_token,
+            #             "returnTo": url_for("header", _external=True),
+            #             "client_id": env.get("AUTH0_CLIENT_ID"),
+            #             "nickname": username
+            #         },
+            #         quote_via=quote_plus,
+            #     )
+            # )
+            # return redirect(url_for('profile'))
+            return render_template('editProfile.html', session=getSession)
         elif request.method == 'GET':
             return render_template('editProfile.html', session=getSession)
     else:
         return redirect(url_for('header'))
+
 
 
 @app.route("/search", methods=["GET", "POST"])

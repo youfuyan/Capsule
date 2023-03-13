@@ -66,7 +66,8 @@ label {
 }
 .fix{
     position:absolute;
-    transform:translate(-50%,-50%)
+    transform:translate(-50%,-50%);
+    z-index: -1
 }
 .background_img{
     object-fit:cover;
@@ -124,8 +125,8 @@ label {
 a.pure-button-primary {
     background: white;
     /*color of the button 'login'*/
-    /* color: #1f8dd6; */
-    color:#373737;
+    color: #1f8dd6;
+    /* color:#373737; */
     border-radius: 5px;
     font-size: 120%;
 }
