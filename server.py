@@ -113,10 +113,11 @@ def comments(id):
       # for submitting the new comment
       if request.method == 'POST':
         tokenStr = json.loads(json.dumps(session.get('user')))
+        # get current session's/logged in user's username
         user_id = tokenStr["userinfo"]["sub"]
         photo_id = id
         newComment = request.form['comment']
-        print(newComment)
+        # print(newComment)
         db.create_comment(user_id, photo_id, newComment)
         return redirect(url_for('comments', id=id))
         # return render_template('comments.html', session=getSession, comments=allComments)
@@ -124,7 +125,14 @@ def comments(id):
       # for get request
       else:
         allComments = db.get_comments_by_photo_id(id)
-        return render_template('comments.html', session=getSession, comments=allComments)
+        commentsJson = []
+        for comment in allComments:
+          userId = comment["user_id"]
+          userName = db.get_user_by_id(userId)[1]
+          commentsJson.append({"id": comment[0], "comment": comment[1],
+                    "user_name": userName, "photo_id": comment[3], })
+        
+        return render_template('comments.html', session=getSession, comments=commentsJson)
     else:
         return redirect(url_for('header'))
 
@@ -134,7 +142,7 @@ def addPost():
     getSession = session.get('user')
     if getSession:
         tokenStr = json.loads(json.dumps(session.get('user')))
-        user_id = tokenStr["userinfo"]["sub"]
+        userId = tokenStr["userinfo"]["sub"]
 
         if request.method == 'POST':
             # Get the form data
@@ -148,14 +156,14 @@ def addPost():
             photo_name = secure_filename(photo.filename)
 
             upload = imagekit.upload(file=photo_string,
-                                     file_name=photo_name,
-                                     options=UploadFileRequestOptions())
-            print(upload.file_id)
-            print(upload.url)
+                                    file_name=photo_name,
+                                    options=UploadFileRequestOptions())
+            # print(upload.file_id)
+            # print(upload.url)
 
             # Do something with the form data (e.g. save to a database)
             db.add_photo(upload.file_id, title, body,
-                         location, upload.url, user_id)
+                        location, upload.url, user_id)
 
             return redirect(url_for('galleryPage'))
 
@@ -172,12 +180,14 @@ def profile():
         # print(tokenStr)
         user_id = tokenStr["userinfo"]["sub"]
         photos = db.get_photos_by_user_id(user_id)
-        print(photos)
+        # print(photos)
 
         return render_template('profile.html', photos=photos, session=getSession)
     else:
         return redirect(url_for('header'))
-    
+
+
+
 @app.route("/liked", methods=["GET", "POST"])
 def liked():
     getSession = session.get('user')
@@ -201,6 +211,7 @@ def editProfile():
     if getSession:
         if request.method == 'POST':
             return redirect(url_for('profile'))
+            
         elif request.method == 'GET':
             return render_template('editProfile.html', session=getSession)
     else:

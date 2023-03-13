@@ -6,7 +6,11 @@
 .profile-details{
     padding: 5em;
     border-bottom: 1px solid #ccc;
-    text-align: right;
+    text-align: left;
+}
+
+.profile-icon {
+  text-align: right;
 }
 
 .profile-subdetails{

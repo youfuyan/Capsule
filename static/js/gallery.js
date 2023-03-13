@@ -152,7 +152,7 @@ function main(){
     // listener to like or not like and store them
     likeFunctionality();
 
-      // for checking the comment numbers of each photos
+    // for checking the comment numbers of each photos
     handleCommentNumber();
 }
 

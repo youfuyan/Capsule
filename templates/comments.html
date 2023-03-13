@@ -18,8 +18,10 @@
   <div class="comments">
     <div class="posted-comments">
       <div class="pure-u-1 pure-u-md-1-2 comment-container">
-        <p class="author"><i class="far fa-user fa-lg"></i> {{session.userinfo.name}} </p>
-        <p class="comment-body"> {{ comment.text }}</p>
+        <p id="comment-name" class="author"><i class="far fa-user fa-lg"></i> 
+          {{ comment.user_name }}
+        </p>
+        <p class="comment-body"> {{ comment.comment }}</p>
       </div>
     </div>
   </div>

@@ -32,7 +32,7 @@ def getPhotoAPI(id):
 def addPhotoAPI():
     data = request.get_json()
     db.add_photo(data['id'], data['title'], data['description'], data['location'],
-                 data['upload_date'], data['image_url'], data['user_id'])
+                data['upload_date'], data['image_url'], data['user_id'])
     return jsonify({"success": True})
 
 
@@ -58,7 +58,7 @@ def getAllUsersAPI():
     json = []
     for user in users:
         json.append({"id": user[0], "username": user[1], "email": user[2],
-                     "profile_pic": user[3], "saved_photos": user[4]})
+                    "profile_pic": user[3], "saved_photos": user[4]})
     return jsonify(json)
 
 
