@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created using Krita: https://krita.org -->
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:krita="http://krita.org/namespaces/svg/krita"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    width="720pt"
+    height="108pt"
+    viewBox="0 0 720 108">
+    <mask id="pin_circle">
+      <ellipse id="shape0" rx="16.4400010904813" ry="16.799993771521" cx="16.4400010904813" cy="16.799993771521" fill="#ffffff" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel"/>
+      <circle id="shape2" transform="translate(7.20000109048129, 6.77998759478027)" r="9.24" cx="9.24" cy="9.24" fill="#000000" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel"/>
+
+    </mask>
+<defs/>
+<g id="group0" transform="matrix(0.714285714285714 0 0 0.714285714285714 13.9114285123892 69.374419662184)" fill="none">
+  <g id="group0" transform="matrix(0.419999989798269 0 0 0.419999989798269 142.86718105872 50.3664113435034)" fill="none">
+   <ellipse id="shape0" rx="16.4400010904813" ry="16.799993771521" cx="16.4400010904813" cy="16.799993771521" mask="url(#pin_circle)" fill="#ffffff" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel"/>
+   <path id="shape1" transform="translate(1.61427979700443, 23.7543734140839)" fill="#ffffff" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M0 0L14.8165 28.7906L29.6514 0.440613L15.3372 8.90955Z" sodipodi:nodetypes="ccccc"/>
+   
+    <!-- <circle id="shape2" transform="translate(7.20000109048129, 6.77998759478027)" r="9.24" cx="9.24" cy="9.24" fill="#72ccff" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel"/> -->
+   
+  </g>
+  <path id="shape3" transform="matrix(1.39999996599423 0 0 1.39999996599423 0 0)" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="bevel" stroke-dasharray="7.2,3.6" d="M548.288 37.756C490.962 14.0559 419.571 2.59245e-15 342.18 0C251.715 -3.03037e-15 169.45 19.2057 108.264 50.5706" sodipodi:nodetypes="cccccc"/>
+  <g id="group1" transform="matrix(-0.49242351122419 1.05915452805382 -1.01385884924666 -0.471364584872349 826.055957208011 50.8200035901065)" fill="none">
+   <path id="shape4" transform="translate(1.13686837721616e-13, 14.7474491231679)" fill="#ffffff" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M0.0212132 12.5052L0 10.7657L18.954 0.0424147L26.0498 0L45.1449 10.8126L45.1599 12.5376L28.5424 9.10046L25.6043 9.06864L24.6391 21.5738L32.2971 25.668L32.3077 27.959L23.9798 25.9476L22.5024 30.9576L21.0249 26.0076L12.7111 27.8713L12.6886 25.5988L20.2427 21.6322L19.2563 9.06864L15.5599 9.05804Z" sodipodi:nodetypes="cccccccccccccccccccc"/>
+   <ellipse id="shape5" transform="translate(18.7298346519543, 0)" rx="3.78" ry="14.4" cx="3.78" cy="14.4" fill="#ffffff" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel"/>
+  </g>
+ </g>
+</svg>

@@ -6,7 +6,7 @@ from flask import *
 import json
 from os import environ as env
 import base64
-from urllib.parse import quote_plus, urlencode
+from urllib.parse import quote_plus, urlencode, quote
 import db
 from api import api
 
@@ -40,6 +40,20 @@ oauth.register(
 )
 
 # AUTH0
+# connection = http.client.HTTPSConnection(env.get("AUTH0_DOMAIN"))
+# payload = "{\"client_id\":\"" + env.get("AUTH0_CLIENT_ID") + "\",\"client_secret\":\"" + env.get("AUTH0_CLIENT_SECRET") + "\",\"audience\":\"https://" + env.get("AUTH0_DOMAIN") + "/api/v2/\",\"grant_type\":\"client_credentials\"}"
+# headers = { 'content-type': "application/json" }
+# connection.request("POST", "/oauth/token", payload, headers)
+
+# res = connection.getresponse()
+# data = res.read()
+# data_json = json.loads(data)
+# auth_access_token = data_json['access_token']
+# access_token = data.decode("utf-8").access_token
+
+
+
+
 
 
 @app.route("/login")
@@ -178,10 +192,8 @@ def profile():
     getSession = session.get('user')
     if getSession:
         tokenStr = json.loads(json.dumps(session.get('user')))
-        # print(tokenStr)
         user_id = tokenStr["userinfo"]["sub"]
         photos = db.get_photos_by_user_id(user_id)
-        # print(photos)
 
         return render_template('profile.html', photos=photos, session=getSession)
     else:
@@ -210,6 +222,10 @@ def liked():
 def editProfile():
     getSession = session.get('user')
     if getSession:
+        tokenStr = json.loads(json.dumps(session.get('user')))
+        user_id = tokenStr["userinfo"]["sub"]
+        # print(request.method)
+        # print(quote(user_id))
         if request.method == 'POST':
             return redirect(url_for('profile'))
             
@@ -217,6 +233,7 @@ def editProfile():
             return render_template('editProfile.html', session=getSession)
     else:
         return redirect(url_for('header'))
+
 
 
 @app.route("/search", methods=["GET", "POST"])
