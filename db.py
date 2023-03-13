@@ -75,6 +75,10 @@ def get_photos_by_user_id(user_id):
         cur.execute("SELECT * FROM photos WHERE user_id = %s", [user_id])
         return cur.fetchall()
 
+def get_photo_by_image_id(image_id):
+    with get_db_cursor() as cur:
+        cur.execute("SELECT * FROM photos WHERE id = %s", [image_id])
+        return cur.fetchone()
 
 def edit_photo(id, title, description, location, image_url):
     with get_db_cursor(True) as cur:
@@ -134,19 +138,24 @@ def add_like(user_id, photo_id):
 
 def get_likes_by_user_id(user_id):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM likes WHERE user_id = %s", (user_id))
+        cur.execute("SELECT * FROM likes WHERE user_id = %s", [user_id])
         return cur.fetchall()
+    
+def get_likes_by_user_id_photo_id(user_id, photo_id):
+    with get_db_cursor() as cur:
+        cur.execute("SELECT * FROM likes WHERE user_id = %s AND photo_id = %s", [user_id, photo_id])
+        return cur.fetchone()
 
 
 def get_likes_by_photo_id(photo_id):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM likes WHERE photo_id = %s", (photo_id))
+        cur.execute("SELECT * FROM likes WHERE photo_id = %s", [photo_id])
         return cur.fetchall()
 
 
-def remove_like(id):
+def remove_like(user_id, photo_id):
     with get_db_cursor(True) as cur:
-        cur.execute("DELETE FROM photos WHERE id = %s", (id))
+        cur.execute("DELETE FROM likes WHERE user_id = %s AND photo_id = %s", (user_id, photo_id))
 
 ##############################
 # Saved Photos
@@ -194,7 +203,7 @@ def remove_saved_photos(user_id, photo_id):
 
 def get_user_by_id(user_id):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM users WHERE id = %s", [user_id])
+        cur.execute("SELECT * FROM users WHERE id = %s", (user_id,))
         return cur.fetchone()
 
 
@@ -207,7 +216,7 @@ def create_user(user_id, name, email, profile_url):
 
 def get_user_by_name(name):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM users WHERE username = %s", (name))
+        cur.execute("SELECT * FROM users WHERE username = %s", (name,))
         return cur.fetchone()
 
 
@@ -227,6 +236,10 @@ def edit_user(id, name, email, profile_pic_url):
         cur.execute("UPDATE users SET username = %s, email = %s, profile_pic_url = %s WHERE id = %s",
                     (name, email, profile_pic_url, id))
 
+def edit_user_name(id, name):
+    with get_db_cursor(True) as cur:
+        cur.execute("UPDATE users SET username = %s WHERE id = %s",
+                    (name, id))
 
 ##############################
 # Comments
@@ -235,32 +248,33 @@ def edit_user(id, name, email, profile_pic_url):
 
 def create_comment(user_id, photo_id, comment):
     with get_db_cursor(True) as cur:
-        cur.execute("INSERT INTO comments (user_id, photo_id, comment) values (%s,%s,%s)",
+        cur.execute("INSERT INTO comments (user_id, photo_id, text) values (%s,%s,%s)",
                     (user_id, photo_id, comment))
-        return cur.fetchone()
+        # return cur.fetchone()
 
 
 def get_comments_by_photo_id(photo_id):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM comments WHERE photo_id = %s", (photo_id))
+        print(type(photo_id))
+        cur.execute("SELECT * FROM comments WHERE photo_id = %s", (photo_id,))
         return cur.fetchall()
 
 
 def get_comments_by_user_id(user_id):
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM comments WHERE user_id = %s", (user_id))
+        cur.execute("SELECT * FROM comments WHERE user_id = %s", (user_id,))
         return cur.fetchall()
 
 
 def delete_comment(id):
     with get_db_cursor(True) as cur:
-        cur.execute("DELETE FROM comments WHERE id = %s", (id))
+        cur.execute("DELETE FROM comments WHERE id = %s", (id,))
 
 
 def update_comment(id, comment):
     with get_db_cursor(True) as cur:
         cur.execute(
-            "UPDATE comments SET comment = %s WHERE id = %s", (comment, id))
+            "UPDATE comments SET text = %s WHERE id = %s", (comment, id))
 
 ##############################
 # Search

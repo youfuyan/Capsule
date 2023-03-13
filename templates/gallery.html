@@ -3,6 +3,7 @@
 {% block head_others %} 
 	<title>Vertical Gallery Page</title>
 	<link rel="stylesheet" href="../static/css/gallery.css" />
+	<script src="../static/js/gallery.js" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -12,21 +13,32 @@
   <!-- header and sideBar -->
 
   {% call sideBar.sideBar() %}
-	<div class="container">
+	<div id="{{session.sub}}" class="owner-id-gallery-page container">
+		
 		{% for photo in photos %}
-			<div class="post">
+			<div id="{{photo.id}}" class="post post-{{loop.index}}">
 				<img src="{{photo.image_url}}" alt="Post">
 				<div class="post-details">
 					<h2>{{photo.title}}</h2>
 					<p>{{photo.description}}</p>
 					<div class="post-icons">
-						<span class="like-icon"><i class="fa fa-thumbs-up"></i>500<i class="fa fa-comment"></i>100<i class="fa fa-bookmark"></i></span>
+						<span class="like-icon">
+							<div>
+								<i id="like-button-{{loop.index}}" class="like-button fa fa-thumbs-up"></i>
+								<p class="like-number"> 500</p> 
+							</div>
+					<a href="/comments/{{photo.id}}" id="comment" uid={{photo.id}}>
+						<i class="fa fa-comment"></i> 
+						<p class="comment-number">0</p>
+					</a>
+							<!-- <p class="comment-number"> 100</p>  -->
+						</span>
 					</div>
 				</div>
 			</div>
 		{% endfor %}
 	</div>
 
-	<script src="https://kit.fontawesome.com/your-unique-code.js" crossorigin="anonymous"></script>
+  <!-- <script src="../static/js/gallery.js"></script> -->
   {% endcall %}
 {% endblock %}
