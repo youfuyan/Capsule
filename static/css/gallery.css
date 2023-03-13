@@ -64,6 +64,10 @@ body {
 	color: yellow;
 }
 
+.like-button{
+	cursor: pointer;
+}
+
 
 /* .post-icons .like-icon .pure-menu-link {
   display: flex;
