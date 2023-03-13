@@ -10,11 +10,8 @@
 }
 
 .comment-container {
-  /* width: 80%; */
   padding: 10px;
   border-bottom: .5px solid #ccc;
-  /* margin-bottom: 10px; */
-  /* overflow-y: auto; */
 }
 
 /* Set the width of the comments container to 100% on small screens */
@@ -25,8 +22,14 @@
   }
 }
 
-.comment-body {
+
+.comment-body, .comment-time {
   padding-left: 1.2em;
+}
+
+.comment-time {
+  font-style: italic;
+  font-size: 10px;
 }
 
 .input-section {

@@ -129,8 +129,9 @@ def comments(id):
         for comment in allComments:
           userId = comment["user_id"]
           userName = db.get_user_by_id(userId)[1]
+          photo_url = db.get_user_by_id(userId)[3]
           commentsJson.append({"id": comment[0], "comment": comment[1],
-                    "user_name": userName, "photo_id": comment[3], })
+                    "user_name": userName, "photo_id": comment[3], "timestamp": comment[4], "photo_url": photo_url })
         
         return render_template('comments.html', session=getSession, comments=commentsJson)
     else:

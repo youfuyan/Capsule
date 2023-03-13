@@ -18,10 +18,13 @@
   <div class="comments">
     <div class="posted-comments">
       <div class="pure-u-1 pure-u-md-1-2 comment-container">
-        <p id="comment-name" class="author"><i class="far fa-user fa-lg"></i> 
+        <p id="comment-name" class="author">
+          <i class="far fa-user fa-lg"></i> 
           {{ comment.user_name }}
         </p>
+        
         <p class="comment-body"> {{ comment.comment }}</p>
+        <p class="comment-time">{{ comment.timestamp }}</p>
       </div>
     </div>
   </div>
