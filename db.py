@@ -236,6 +236,10 @@ def edit_user(id, name, email, profile_pic_url):
         cur.execute("UPDATE users SET username = %s, email = %s, profile_pic_url = %s WHERE id = %s",
                     (name, email, profile_pic_url, id))
 
+def edit_user_name(id, name):
+    with get_db_cursor(True) as cur:
+        cur.execute("UPDATE users SET username = %s WHERE id = %s",
+                    (name, id))
 
 ##############################
 # Comments
