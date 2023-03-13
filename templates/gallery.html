@@ -1,44 +1,55 @@
 {% extends "base.html" %}
 
-{% block head_others %} 
-	<title>Vertical Gallery Page</title>
-	<link rel="stylesheet" href="../static/css/gallery.css" />
-	<script src="../static/js/gallery.js" defer></script>
+{% block head_others %}
+<title>Vertical Gallery Page</title>
+<link rel="stylesheet" href="../static/css/gallery.css" />
+<script src="../static/js/gallery.js" defer></script>
 {% endblock %}
 
 {% block content %}
 
-  {% import 'responsiveSideBar.html' as sideBar %}
+{% import 'responsiveSideBar.html' as sideBar %}
 
-  <!-- header and sideBar -->
+<!-- header and sideBar -->
 
-  {% call sideBar.sideBar() %}
-	<div id="{{session.sub}}" class="owner-id-gallery-page container">
-		
-		{% for photo in photos %}
-			<div id="{{photo.id}}" class="post post-{{loop.index}}">
-				<img src="{{photo.image_url}}" alt="Post">
-				<div class="post-details">
-					<h2>{{photo.title}}</h2>
-					<p>{{photo.description}}</p>
-					<div class="post-icons">
-						<span class="like-icon">
-							<div>
-								<i id="like-button-{{loop.index}}" class="like-button fa fa-thumbs-up"></i>
-								<p class="like-number"> 500</p> 
-							</div>
-					<a href="/comments/{{photo.id}}" id="comment" uid={{photo.id}}>
-						<i class="fa fa-comment"></i> 
-						<p class="comment-number">0</p>
-					</a>
-							<!-- <p class="comment-number"> 100</p>  -->
-						</span>
-					</div>
-				</div>
-			</div>
-		{% endfor %}
-	</div>
+{% call sideBar.sideBar() %}
+<div id="{{session.sub}}" class="owner-id-gallery-page container">
 
-  <!-- <script src="../static/js/gallery.js"></script> -->
-  {% endcall %}
+  <!-- responsive render posts  -->
+  <div class="pure-g purefix-stretch">
+    {% for photo in photos %}
+    <div id="{{photo.id}}" class="post post-{{loop.index}} pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+      <img src="{{photo.image_url}}" alt="Post">
+      <h2>{{ photo.title }}</h2>
+      <p>{{ photo.description }}</p>
+
+      <div class="post-icons">
+        <span class="like-icon">
+          <div>
+            <i id="like-button-{{loop.index}}" class="like-button fa fa-thumbs-up"></i>
+            <p class="like-number"> 0</p>
+          </div>
+          <a href="/comments/{{photo.id}}" id="comment" uid={{photo.id}}>
+            <i class="fa fa-comment"></i>
+            <p class="comment-number">0</p>
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <!-- {% if (request.args.get('page',1)|int)-1 > 0%}
+        <a href="/pen?page={{(request.args.get('page',1)|int) -1}}">prev</a>
+        {% endif %}
+        {{request.args.get('page',1)}}
+        <a href="/pen?page={{(request.args.get('page',1) | int) +1}}">next</a> -->
+  </div>
+
+  {% endfor %}
+</div>
+<!-- </div> -->
+
+<!-- <script src="../static/js/gallery.js"></script> -->
+{% endcall %}
 {% endblock %}
