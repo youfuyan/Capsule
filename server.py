@@ -191,8 +191,12 @@ def profile():
         tokenStr = json.loads(json.dumps(session.get('user')))
         user_id = tokenStr["userinfo"]["sub"]
         photos = db.get_photos_by_user_id(user_id)
-
-        return render_template('profile.html', photos=photos, session=getSession)
+        personal_likes = db.get_likes_by_user_id(user_id)
+        
+        posts_count = len(photos)
+        personal_likes_count = len(personal_likes)
+        
+        return render_template('profile.html', photos=photos, session=getSession, posts_count=posts_count, personal_likes_count=personal_likes_count)
     else:
         return redirect(url_for('header'))
 
@@ -204,13 +208,18 @@ def liked():
     if getSession:
         tokenStr = json.loads(json.dumps(session.get('user')))
         user_id = tokenStr["userinfo"]["sub"]
+        posts = db.get_photos_by_user_id(user_id)
         personal_likes = db.get_likes_by_user_id(user_id)
+
+        posts_count = len(posts)
+        personal_likes_count = len(personal_likes)
+
         photos = []
         for personal_like in personal_likes:
             photo = db.get_photo_by_image_id(personal_like["photo_id"])
             photos.append(photo)
         
-        return render_template('profile.html', photos=photos, session=getSession)
+        return render_template('profile.html', photos=photos, personal_likes=personal_likes, session=getSession, posts_count=posts_count, personal_likes_count=personal_likes_count)
     else:
         return redirect(url_for('header'))
 
