@@ -1,14 +1,9 @@
-{% extends "base.html" %}
-
-{% block head_others %}
+{% extends "base.html" %} {% block head_others %}
 <title>Vertical Gallery Page</title>
 <link rel="stylesheet" href="../static/css/search.css" />
 <script src="../static/js/search.js" defer></script>
-{% endblock %}
-
-{% block content %}
-
-{% import 'responsiveSideBar.html' as sideBar %}
+{% endblock %} {% block content %} {% import 'responsiveSideBar.html' as sideBar
+%}
 
 <!-- header and sideBar -->
 {% call sideBar.sideBar() %}
@@ -16,11 +11,12 @@
 <!-- the right part body  -->
 <div class="search-container">
   <form action="/search" method="POST">
-    <input type="text" placeholder="Search..." name="query" />
-    <button type="submit"><i class="fa fa-search"></i></button>
+    <div class="search-wrapper">
+      <input type="text" placeholder="Search..." name="query" />
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </div>
   </form>
 </div>
-
 
 <h1 class="search-result-title">Search Results</h1>
 
@@ -42,13 +38,9 @@
 </ul>
 {% else %}
 <p>No results found.</p>
-<div class="pure-g">
-  <img src="https://picsum.photos/id/10/400/400" alt="travel photo" />
+<div class="pure-u-1-3 img">
+  <img src="../static/img/no_results.png" alt="travel photo" />
 </div>
 {% endif %} {% else %}
 <p>No search query entered.</p>
-{% endif %}
-
-{% endcall %}
-
-{% endblock %}
+{% endif %} {% endcall %} {% endblock %}
