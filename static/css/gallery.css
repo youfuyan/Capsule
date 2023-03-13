@@ -12,13 +12,14 @@ body {
 	max-width: 1000px;
 	margin: 0 auto;
 	padding: 20px;
+	width: 84%;
+	float: center;
 }
 
 .post {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 40px;
-	align-items: center;
 }
 
 .post img {
@@ -30,7 +31,7 @@ body {
 .post-details {
 	background-color: #f1f1f1;
 	padding: 10px;
-	align-items: center;
+	align-content: stretch;
 }
 
 .post-details h2 {
@@ -58,6 +59,25 @@ body {
 	cursor:auto  
 }
 
+/* change this to desired color */
+.is-liked{
+	color: yellow;
+}
+
+
 /* .post-icons .like-icon .pure-menu-link {
   display: flex;
 } */
+
+
+.like-number{
+	display:inline-block;
+}
+
+.comment-number{
+	display:inline-block;
+}
+
+#comment{
+	margin-left: .5em;
+}

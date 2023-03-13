@@ -1,80 +1,44 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-  <head>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.1/pure-min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css">
-    <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/comments.css">
-    <script src="../static/js/myjs.js"></script>
-  </head>
+{% block head_others %}
+<link rel="stylesheet" href="../static/css/comments.css">
+<script src="../static/js/myjs.js" defer></script>
+{% endblock %}
 
-  <body>
-    {% import 'sideBar.html' as sideBar %}
+{% block content %}
+{% import 'responsiveSideBar.html' as sideBar %}
 
-    <!-- header and sideBar -->
-    {{ sideBar.header() }}
+<!-- header and sideBar -->
 
-    <!-- the right part body  -->
-    <div class="comments">
-      <div class="posted-comments">
-        <div class="pure-u-1 pure-u-md-1-2 comment-container">
-          <p class="author"><i class="far fa-user fa-lg"></i> John Smith</p>
-          <p class="comment-posted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate vel sapien
-            eget dapibus. Nunc fringilla fringilla justo, ac interdum arcu efficitur a. Mauris quis neque nulla. Nam id
-            efficitur metus.</p>
-        </div>
+{%- call sideBar.sideBar() -%}
+<!-- the right part body  -->
 
-        <div class="pure-u-1 pure-u-md-1-2 comment-container">
-          <p class="author"><i class="far fa-user fa-lg"></i> Nick</p>
-          <p class="comment-posted">Nullam cursus interdum diam, sed scelerisque velit molestie in. Nam eget justo nec
-            nibh pellentesque accumsan. Donec eget risus nisl. Aenean efficitur lorem nec dolor tincidunt bibendum.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate vel sapien eget dapibus. Nunc
-            fringilla fringilla justo, ac interdum arcu efficitur a. Mauris quis neque nulla. Nam id efficitur metus.
-          </p>
-        </div>
-
-        <div class="pure-u-1 pure-u-md-1-2 comment-container">
-          <p class="author"><i class="far fa-user fa-lg"></i> Nick</p>
-          <p class="comment-posted">Nullam cursus interdum diam, sed scelerisque velit molestie in. Nam eget justo nec
-            nibh pellentesque accumsan. Donec eget risus nisl. Aenean efficitur lorem nec dolor tincidunt bibendum.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate vel sapien eget dapibus. Nunc
-            fringilla fringilla justo, ac interdum arcu efficitur a. Mauris quis neque nulla. Nam id efficitur metus.
-          </p>
-        </div>
-
-        <div class="pure-u-1 pure-u-md-1-2 comment-container">
-          <p class="author"><i class="far fa-user fa-lg"></i> Nick</p>
-          <p class="comment-posted">Nullam cursus interdum diam, sed scelerisque velit molestie in. Nam eget justo nec
-            nibh pellentesque accumsan. Donec eget risus nisl. Aenean efficitur lorem nec dolor tincidunt bibendum.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate vel sapien eget dapibus. Nunc
-            fringilla fringilla justo, ac interdum arcu efficitur a. Mauris quis neque nulla. Nam id efficitur metus.
-          </p>
-        </div>
-
-        <div class="pure-u-1 pure-u-md-1-2 comment-container">
-          <p class="author"><i class="far fa-user fa-lg"></i> Nick</p>
-          <p class="comment-posted">Nullam cursus interdum diam, sed scelerisque velit molestie in. Nam eget justo nec
-            nibh pellentesque accumsan. Donec eget risus nisl. Aenean efficitur lorem nec dolor tincidunt bibendum.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate vel sapien eget dapibus. Nunc
-            fringilla fringilla justo, ac interdum arcu efficitur a. Mauris quis neque nulla. Nam id efficitur metus.
-          </p>
-        </div>
-
+<div>
+  {% for comment in comments %}
+  <div class="comments">
+    <div class="posted-comments">
+      <div class="pure-u-1 pure-u-md-1-2 comment-container">
+        <p id="comment-name" class="author">
+          <i class="far fa-user fa-lg"></i> 
+          {{ comment.user_name }}
+        </p>
+        
+        <p class="comment-body"> {{ comment.comment }}</p>
+        <p class="comment-time">{{ comment.timestamp }}</p>
       </div>
-
-      <div class="input-section">
-        <form method="post" id="comment-form">
-            <textarea name="comment" class="comment-input" placeholder="Add comment here..."></textarea>
-            <button type="submit" class="post-button">Post</button>
-        </form>
-      </div>
-
     </div>
+  </div>
+  {% endfor %}
+
+  <div class="input-section">
+    <form method="post" id="comment-form">
+      <textarea name="comment" class="comment-input" placeholder="Add comment here..."></textarea>
+      <button type="submit" class="post-button">Post</button>
+    </form>
+  </div>
+
+</div>
 
 
-  </body>
-
-</html>
+{%- endcall -%}
+{% endblock %}
