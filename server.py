@@ -53,9 +53,6 @@ oauth.register(
 
 
 
-
-
-
 @app.route("/login")
 def login():
     # return a flask object redirecting a html
@@ -157,7 +154,7 @@ def addPost():
     getSession = session.get('user')
     if getSession:
         tokenStr = json.loads(json.dumps(session.get('user')))
-        userId = tokenStr["userinfo"]["sub"]
+        user_id = tokenStr["userinfo"]["sub"]
 
         if request.method == 'POST':
             # Get the form data
@@ -227,8 +224,34 @@ def editProfile():
         # print(request.method)
         # print(quote(user_id))
         if request.method == 'POST':
-            return redirect(url_for('profile'))
-            
+        #     print("in the thing")
+        #     username = request.form['username']
+        #     conn = http.client.HTTPConnection(env.get("AUTH0_DOMAIN"))
+        #     headers = {'authorization': "Bearer " + auth_access_token,
+        #                 'nickname':username,
+        #                 "connection": "Initial-Connection",
+        #                 'client_id': env.get("AUTH0_CLIENT_ID")}
+        #     # conn.request("PATCH", "/api/v2/users/" + quote(user_id), headers=headers)
+        #     conn.request("GET", "/api/v2/users")
+        #     res= conn.getresponse()
+        #     data=res.read()
+        #     print(json.loads(data))
+            # print(data.decode("utf-8"))
+            # return redirect(
+            #     "https://" + env.get("AUTH0_DOMAIN")
+            #     + "/api/v2/users/" + quote(user_id) + "?"
+            #     + urlencode(
+            #         {
+            #             "authorization": "Bearer " + auth_access_token,
+            #             "returnTo": url_for("header", _external=True),
+            #             "client_id": env.get("AUTH0_CLIENT_ID"),
+            #             "nickname": username
+            #         },
+            #         quote_via=quote_plus,
+            #     )
+            # )
+            # return redirect(url_for('profile'))
+            return render_template('editProfile.html', session=getSession)
         elif request.method == 'GET':
             return render_template('editProfile.html', session=getSession)
     else:
@@ -254,6 +277,7 @@ def search():
 def galleryPage():
     getSession = session.get('user')
     allPhotos = db.get_photos()
+    print(len(allPhotos))
     if getSession:
         tokenStr = json.loads(json.dumps(session.get('user')))
         sessionStr = tokenStr["userinfo"]
