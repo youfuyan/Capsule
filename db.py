@@ -94,9 +94,32 @@ def delete_photo(id):
 def search_photos(query):
     with get_db_cursor() as cur:
         cur.execute(
-            "SELECT * FROM photos WHERE to_tsvector('english', title || ' ' || description) @@ to_tsquery('english', %s)", (query,))
+            """
+            SELECT *
+            FROM photos
+            WHERE
+            to_tsvector('english', title) @@ plainto_tsquery('english', %s)
+            OR title %% %s
+            OR to_tsvector('english', description) @@ plainto_tsquery('english', %s)
+            OR description %% %s;
+            """,
+            (query, query, query, query)  # pass four values here
+        )
         return cur.fetchall()
 
+
+def search_photos_test(query):
+    with get_db_cursor() as cur:
+        cur.execute(
+            """
+            SELECT *
+            FROM photos
+            WHERE
+            to_tsvector('english', title) || to_tsvector('english', ' ' || description) @@ plainto_tsquery('english', %s)
+            """,
+            (query,)
+        )
+        return cur.fetchall()
 
 ##############################
 # Likes
@@ -252,10 +275,3 @@ def update_comment(id, comment):
 ##############################
 # Search
 ##############################
-
-
-def search_photos(search_term):
-    with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM photos WHERE title LIKE %s OR description LIKE %s OR location LIKE %s",
-                    (search_term, search_term, search_term))
-        return cur.fetchall()

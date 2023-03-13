@@ -38,4 +38,13 @@ CREATE TABLE saved_photos (
   created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
-CREATE INDEX idx_photos_search ON photos USING gin(to_tsvector('english', title || ' ' || description));
+-- CREATE INDEX idx_photos_search ON photos USING gin(to_tsvector('english', title || ' ' || description));
+-- CREATE INDEX title_idx ON photos USING gin (title gin_trgm_ops);
+-- CREATE INDEX description_idx ON photos USING gin (description gin_trgm_ops);
+CREATE INDEX title_idx ON photos USING gin (title gin_trgm_ops);
+CREATE INDEX description_idx ON photos USING gin (description gin_trgm_ops);
+CREATE INDEX title_tsv_idx ON photos USING gin (to_tsvector('english', title));
+CREATE INDEX description_tsv_idx ON photos USING gin (to_tsvector('english', description));
+
+
+CREATE EXTENSION pg_trgm;
