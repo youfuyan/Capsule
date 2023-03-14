@@ -20,7 +20,7 @@
 }
 
 .profile-subdetails{
-    padding: 5em;
+    /* padding: 5em; */
     text-align: center;
     justify-content: center;
     padding-top: 25px;
@@ -37,7 +37,6 @@
 }
 
 .profile-subdetails-middle{
-    border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
 }
 
@@ -157,3 +156,25 @@
 .hidden-post{
     display: none;
 }
+
+@media screen and (max-width: 48em){
+    .profile-details{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .personal-submenus a{
+        font-size:15px;
+    }
+
+    .user-icon{
+        width: 75px;
+    }
+
+    .profile-name a{
+        font-size: 15px;
+    }
+
+    .profile-name h1{
+        font-size: 20px;
+    }
+  }
