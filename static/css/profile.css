@@ -44,14 +44,24 @@
     background-color: #eee;
 }
 
+.upload-box:hover > a{
+    display:block;
+}
+
 .upload-box a{
     position: relative;
     padding: 0;
     background-color: transparent;
     left: 65px;
     bottom: 160px;
+    display:none;
+    color: #373737 !important;
 }
 
+.upload-box a:hover{
+    background-image:none;
+    color:#000000 !important;
+}
 
 .edit-profile-form{
     padding-top: 5em;
