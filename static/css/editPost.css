@@ -1,0 +1,147 @@
+html, body {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .upload-box {
+    position: relative;
+    /* display: flex; */
+    width: 10em;
+    height: 10em;
+    background-color: #eee;
+  }
+  
+  .upload-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: #ccc;
+    cursor: pointer;
+  }
+  
+  .upload-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .upload-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  #file-upload {
+    cursor: pointer;
+    z-index: 100;
+  }
+  
+  .pure-form label {
+    margin: 0em;
+  }
+  
+  #post-form {
+    font-family: 'Poppins';
+    font-weight: lighter;
+    font-size: small;
+  }
+  
+  #upload-images, #add-title, #add-body {
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(180, 179, 179);
+  }
+  
+  #add-images {
+    margin: 2rem;
+  }
+  
+  #add-title, #add-body {
+    padding: 1em;
+  }
+  
+  /* #add-images {
+    margin: 2rem;
+  } */
+  
+  .pure-control-group {
+    margin-bottom: 0em;
+  }
+  
+  #title, #body {
+    width: 100%;
+  }
+  
+  #location {
+    width: 10%;
+  }
+  
+  #title, #body{
+    border: none;
+    box-shadow: none !important;
+  }
+  
+  /* #add-body {
+    height: 20em;
+  } */
+  
+  /* #save-post {
+    margin-left: 3em;
+  } */
+  
+  #save-draft {
+    font-size: xx-small;
+  }
+  
+  fieldset {
+    margin-right: 0px;
+  }
+  
+  #add-location-save {
+    display: flex;
+    margin: 1em;
+  }
+  
+  .upload-location {
+    padding-top: 4px;
+  }
+  
+  .choose-location {
+    margin-left: 1em;
+    height: 2em;
+    width: 20em;
+  }
+  
+  #save-draft {
+    margin-left: 40rem;
+    background-color: white;
+    border: none;
+  }
+  
+  
+  .add-post-button {
+    margin-left: 0.5em;
+    width: 10%;
+    padding: 10px;
+    background-color: #72ccff;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 17px;
+    border: none;
+  }
+  
+  textarea {
+    resize: none;
+    max-width: 100%;
+  
+  }

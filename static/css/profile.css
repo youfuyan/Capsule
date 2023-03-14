@@ -44,6 +44,14 @@
     background-color: #eee;
 }
 
+.upload-box a{
+    position: relative;
+    padding: 0;
+    background-color: transparent;
+    left: 65px;
+    bottom: 160px;
+}
+
 
 .edit-profile-form{
     padding-top: 5em;
