@@ -5,7 +5,8 @@
 }
 
 body {
-	font-family: Arial, sans-serif;
+  font-family: 'Poppins';
+  font-weight: lighter;
 }
 
 .container {
@@ -23,27 +24,10 @@ body {
 }
 
 .post img {
-	width: auto;
-	height: auto;
 	align-items: center;
-}
-
-.post-details {
-	background-color: #f1f1f1;
-	padding: 10px;
-	align-content: stretch;
-}
-
-.post-details h2 {
-	font-size: 24px;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-.post-details p {
-	font-size: 18px;
-	margin-bottom: 10px;
-	align-items: center;
+  max-width: 100%;
+  height: auto;
+  min-height: 250px;
 }
 
 .post-icons {
@@ -56,12 +40,12 @@ body {
 	align-items: space-evenly;
 	font-size: 20px;
 	color: black;
-	cursor:auto  
+	cursor: auto;
 }
 
 /* change this to desired color */
 .is-liked{
-	color: yellow;
+	color: rgb(253, 216, 92);
 }
 
 .like-button{
@@ -84,4 +68,10 @@ body {
 
 #comment{
 	margin-left: .5em;
+}
+
+@media (min-width: 30em) {
+  .post {
+      text-align: left;
+  }
 }
