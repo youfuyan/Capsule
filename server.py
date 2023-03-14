@@ -170,6 +170,7 @@ def addPost():
             # Get the form data
             title = request.form['title']
             body = request.form['body']
+            # body = body.replace('\\n', '<p>')
             location = request.form['location']
             photo = request.files['image']
 
