@@ -67,10 +67,12 @@ label {
 .fix{
     position:absolute;
     transform:translate(-50%,-50%);
-    z-index: -1
+    z-index: -1;
 }
-.background_img{
+.background-img{
     object-fit:cover;
+    position:fixed;
+    z-index:-1;
 }
 
 

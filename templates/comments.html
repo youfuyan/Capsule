@@ -2,7 +2,7 @@
 
 {% block head_others %}
 <link rel="stylesheet" href="../static/css/comments.css">
-<script src="../static/js/myjs.js" defer></script>
+<!-- <script src="../static/js/myjs.js" defer></script> -->
 {% endblock %}
 
 {% block content %}
@@ -13,16 +13,33 @@
 {%- call sideBar.sideBar() -%}
 <!-- the right part body  -->
 
-<div>
+<div id="container">
+  <div class="post-content post">
+    <span class="post-author">
+      <img src="{{ photoJson[0].get('user_img_url') }}" alt="user photo">
+      <p class="post-user">{{ photoJson[0].get("user_name") }}</p>
+      <p class="post-time">{{ photoJson[0].get('post_timestamp') }}</p>
+    </span>
+    <img src="{{ photoJson[0].get('post_img_url') }}" alt="Post">
+    <h2 class="post-title">{{ photoJson[0].get('title') }}</h2>
+    <p class="post-body">{{ photoJson[0].get('description') }}</p>
+
+  </div>
+
+  <div class="comment-title">
+    <i class="fa fa-comment"></i>
+    <p >Comments</p>
+  </div>
+
   {% for comment in comments %}
   <div class="comments">
     <div class="posted-comments">
       <div class="pure-u-1 pure-u-md-1-2 comment-container">
         <p id="comment-name" class="author">
-          <i class="far fa-user fa-lg"></i> 
+          <i class="far fa-user fa-lg"></i>
           {{ comment.user_name }}
         </p>
-        
+
         <p class="comment-body"> {{ comment.comment }}</p>
         <p class="comment-time">{{ comment.timestamp }}</p>
       </div>

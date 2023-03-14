@@ -1,6 +1,12 @@
+* {
+  font-family: 'Poppins';
+  font-weight: lighter;
+}
+
 .user-icon{
     width: 100px;
     margin-right: 5em;
+    border-radius: 50%;
 }
 
 .profile-details{
@@ -42,12 +48,31 @@
 
 
 .upload-box {
+    position: relative;
     display: inline-block;
     width: 10em;
     height: 10em;
     background-color: #eee;
 }
 
+.upload-box:hover > a{
+    display:block;
+}
+
+.upload-box a{
+    position: relative;
+    padding: 0;
+    background-color: transparent;
+    left: 65px;
+    bottom: 160px;
+    display:none;
+    color: #373737 !important;
+}
+
+.upload-box a:hover{
+    background-image:none;
+    color:#000000 !important;
+}
 
 .edit-profile-form{
     padding-top: 5em;
@@ -105,7 +130,7 @@
 }
 
 .edit-profile-name{
-   text-align: left;
+  text-align: left;
 }
 
 .edit-save-button{
@@ -119,4 +144,16 @@
     cursor: pointer;
     font-size: 17px;
     border: none;
+}
+
+.edit-post{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: default;
+}
+
+
+.hidden-post{
+    display: none;
 }

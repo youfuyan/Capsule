@@ -9,8 +9,6 @@ import base64
 from urllib.parse import quote_plus, urlencode, quote
 import db
 from api import api
-import http.client
-
 
 from authlib.integrations.flask_client import OAuth
 from imagekitio import ImageKit
@@ -23,6 +21,7 @@ app.secret_key = env.get("APP_SECRET_KEY")
 
 
 app.register_blueprint(api)
+
 
 @app.before_first_request
 def initialize():
@@ -52,7 +51,6 @@ oauth.register(
 # data_json = json.loads(data)
 # auth_access_token = data_json['access_token']
 # access_token = data.decode("utf-8").access_token
-
 
 
 @app.route("/login")
@@ -133,20 +131,30 @@ def comments(id):
         # print(newComment)
         db.create_comment(user_id, photo_id, newComment)
         return redirect(url_for('comments', id=id))
-        # return render_template('comments.html', session=getSession, comments=allComments)
       
       # for get request
       else:
+        photo=db.get_photo_by_image_id(id)
         allComments = db.get_comments_by_photo_id(id)
         commentsJson = []
+        photoJson = []
+        corresponding_user_name = db.get_user_by_id(photo[6])[1]
+        corresponding_user_profile_img = db.get_user_by_id(photo[6])[3]
+        photoJson.append({"title": photo[1], 
+                    "description": photo[2],
+                    "user_name": corresponding_user_name, 
+                    "user_img_url": corresponding_user_profile_img, 
+                    "post_timestamp": photo[4],
+                    "post_img_url": photo[5] })
+        
+
         for comment in allComments:
           userId = comment["user_id"]
           userName = db.get_user_by_id(userId)[1]
-          photo_url = db.get_user_by_id(userId)[3]
           commentsJson.append({"id": comment[0], "comment": comment[1],
-                    "user_name": userName, "photo_id": comment[3], "timestamp": comment[4], "photo_url": photo_url })
+                    "user_name": userName, "photo_id": comment[3], "timestamp": comment[4]})
         
-        return render_template('comments.html', session=getSession, comments=commentsJson)
+        return render_template('comments.html', session=getSession, comments=commentsJson, photoJson=photoJson)
     else:
         return redirect(url_for('header'))
 
@@ -162,22 +170,22 @@ def addPost():
             # Get the form data
             title = request.form['title']
             body = request.form['body']
+            # body = body.replace('\\n', '<p>')
             location = request.form['location']
             photo = request.files['image']
-            is_draft = request.form.get('draft') == 'on'
 
             photo_string = base64.b64encode(photo.read())
             photo_name = secure_filename(photo.filename)
 
             upload = imagekit.upload(file=photo_string,
-                                    file_name=photo_name,
-                                    options=UploadFileRequestOptions())
+                                     file_name=photo_name,
+                                     options=UploadFileRequestOptions())
             # print(upload.file_id)
             # print(upload.url)
 
             # Do something with the form data (e.g. save to a database)
             db.add_photo(upload.file_id, title, body,
-                        location, upload.url, user_id)
+                         location, upload.url, user_id)
 
             return redirect(url_for('galleryPage'))
 
@@ -186,20 +194,40 @@ def addPost():
         return redirect(url_for('header'))
 
 
+@app.route("/deletePost", methods=["POST"])
+def deletePost():
+    getSession = session.get('user')
+    if getSession:
+        tokenStr = json.loads(json.dumps(session.get('user')))
+        user_id = tokenStr["userinfo"]["sub"]
+
+        if request.method == 'POST':
+            # Get the form data
+            photo_id = request.form['photo_id']
+            photo = db.get_photo_by_image_id(photo_id)
+            if user_id == photo["user_id"]:
+                imagekit.delete_file(file_id=photo_id)
+                db.delete_photo(photo_id)
+
+            return redirect(url_for('profile'))
+
+
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
     getSession = session.get('user')
     if getSession:
         tokenStr = json.loads(json.dumps(session.get('user')))
-        # print(tokenStr)
         user_id = tokenStr["userinfo"]["sub"]
         photos = db.get_photos_by_user_id(user_id)
-        # print(photos)
+        personal_likes = db.get_likes_by_user_id(user_id)
 
-        return render_template('profile.html', photos=photos, session=getSession)
+        posts_count = len(photos)
+        personal_likes_count = len(personal_likes)
+
+        return render_template('profile.html', photos=photos, session=getSession,
+                               posts_count=posts_count, personal_likes_count=personal_likes_count)
     else:
         return redirect(url_for('header'))
-
 
 
 @app.route("/liked", methods=["GET", "POST"])
@@ -208,59 +236,49 @@ def liked():
     if getSession:
         tokenStr = json.loads(json.dumps(session.get('user')))
         user_id = tokenStr["userinfo"]["sub"]
+        posts = db.get_photos_by_user_id(user_id)
         personal_likes = db.get_likes_by_user_id(user_id)
+
+        posts_count = len(posts)
+        personal_likes_count = len(personal_likes)
+
         photos = []
         for personal_like in personal_likes:
             photo = db.get_photo_by_image_id(personal_like["photo_id"])
             photos.append(photo)
-        
-        return render_template('profile.html', photos=photos, session=getSession)
+
+        return render_template('profile.html', photos=photos, personal_likes=personal_likes, session=getSession,
+                               posts_count=posts_count, personal_likes_count=personal_likes_count)
     else:
         return redirect(url_for('header'))
 
 
-@app.route("/editProfile", methods=["GET", "POST"])
+@app.route("/editPost", methods=["GET", "POST"])
 def editProfile():
     getSession = session.get('user')
     if getSession:
         tokenStr = json.loads(json.dumps(session.get('user')))
         user_id = tokenStr["userinfo"]["sub"]
-        # print(request.method)
-        # print(quote(user_id))
+        print(user_id)
         if request.method == 'POST':
-        #     print("in the thing")
-        #     username = request.form['username']
-        #     conn = http.client.HTTPConnection(env.get("AUTH0_DOMAIN"))
-        #     headers = {'authorization': "Bearer " + auth_access_token,
-        #                 'nickname':username,
-        #                 "connection": "Initial-Connection",
-        #                 'client_id': env.get("AUTH0_CLIENT_ID")}
-        #     # conn.request("PATCH", "/api/v2/users/" + quote(user_id), headers=headers)
-        #     conn.request("GET", "/api/v2/users")
-        #     res= conn.getresponse()
-        #     data=res.read()
-        #     print(json.loads(data))
-            # print(data.decode("utf-8"))
-            # return redirect(
-            #     "https://" + env.get("AUTH0_DOMAIN")
-            #     + "/api/v2/users/" + quote(user_id) + "?"
-            #     + urlencode(
-            #         {
-            #             "authorization": "Bearer " + auth_access_token,
-            #             "returnTo": url_for("header", _external=True),
-            #             "client_id": env.get("AUTH0_CLIENT_ID"),
-            #             "nickname": username
-            #         },
-            #         quote_via=quote_plus,
-            #     )
-            # )
-            # return redirect(url_for('profile'))
-            return render_template('editProfile.html', session=getSession)
+            id = request.form['photo_id']
+            title = request.form['title']
+            body = request.form['body']
+            location = request.form['location']
+            image = request.form['image']
+            print(id, title, body, location, image)
+            db.edit_photo(id, title, body, location, image)
+            return redirect(url_for('profile'))
         elif request.method == 'GET':
-            return render_template('editProfile.html', session=getSession)
+            photo_id = request.args.get('photo_id')
+            photo = db.get_photo_by_image_id(photo_id)
+            # security reason if not owner redirect to profile
+            if user_id == photo["user_id"]:
+                return render_template('editPost.html', photo=photo, session=getSession)
+            else:
+                return redirect(url_for('profile'))
     else:
         return redirect(url_for('header'))
-
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -270,7 +288,9 @@ def search():
         if request.method == 'POST':
             query = request.form['query']
             photos = db.search_photos(query)
-            return render_template('search.html', session=getSession, photos=photos, query=query)
+            tokenStr = json.loads(json.dumps(session.get('user')))
+            sessionStr = tokenStr["userinfo"]
+            return render_template('search.html', session=sessionStr, photos=photos, query=query)
         else:
             return render_template('search.html', session=getSession)
     else:
@@ -302,4 +322,3 @@ def signUpPage():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
-
