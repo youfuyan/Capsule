@@ -88,7 +88,7 @@ def edit_photo(id, title, description, location, image_url):
 
 def delete_photo(id):
     with get_db_cursor(True) as cur:
-        cur.execute("DELETE FROM photos WHERE id = %s", (id))
+        cur.execute("DELETE FROM photos WHERE id = %s", [id])
 
 
 def search_photos(query):
