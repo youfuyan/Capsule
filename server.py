@@ -22,6 +22,7 @@ app.secret_key = env.get("APP_SECRET_KEY")
 
 app.register_blueprint(api)
 
+
 @app.before_first_request
 def initialize():
     db.setup()
@@ -50,7 +51,6 @@ oauth.register(
 # data_json = json.loads(data)
 # auth_access_token = data_json['access_token']
 # access_token = data.decode("utf-8").access_token
-
 
 
 @app.route("/login")
@@ -178,21 +178,22 @@ def addPost():
             photo_name = secure_filename(photo.filename)
 
             upload = imagekit.upload(file=photo_string,
-                                    file_name=photo_name,
-                                    options=UploadFileRequestOptions())
+                                     file_name=photo_name,
+                                     options=UploadFileRequestOptions())
             # print(upload.file_id)
             # print(upload.url)
 
             # Do something with the form data (e.g. save to a database)
             db.add_photo(upload.file_id, title, body,
-                        location, upload.url, user_id)
+                         location, upload.url, user_id)
 
             return redirect(url_for('galleryPage'))
 
         return render_template('addPost.html', session=getSession)
     else:
         return redirect(url_for('header'))
-    
+
+
 @app.route("/deletePost", methods=["POST"])
 def deletePost():
     getSession = session.get('user')
@@ -211,7 +212,6 @@ def deletePost():
             return redirect(url_for('profile'))
 
 
-
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
     getSession = session.get('user')
@@ -220,15 +220,14 @@ def profile():
         user_id = tokenStr["userinfo"]["sub"]
         photos = db.get_photos_by_user_id(user_id)
         personal_likes = db.get_likes_by_user_id(user_id)
-        
+
         posts_count = len(photos)
         personal_likes_count = len(personal_likes)
-        
-        return render_template('profile.html', photos=photos, session=getSession, 
+
+        return render_template('profile.html', photos=photos, session=getSession,
                                posts_count=posts_count, personal_likes_count=personal_likes_count)
     else:
         return redirect(url_for('header'))
-
 
 
 @app.route("/liked", methods=["GET", "POST"])
@@ -247,8 +246,8 @@ def liked():
         for personal_like in personal_likes:
             photo = db.get_photo_by_image_id(personal_like["photo_id"])
             photos.append(photo)
-        
-        return render_template('profile.html', photos=photos, personal_likes=personal_likes, session=getSession, 
+
+        return render_template('profile.html', photos=photos, personal_likes=personal_likes, session=getSession,
                                posts_count=posts_count, personal_likes_count=personal_likes_count)
     else:
         return redirect(url_for('header'))
@@ -273,14 +272,13 @@ def editProfile():
         elif request.method == 'GET':
             photo_id = request.args.get('photo_id')
             photo = db.get_photo_by_image_id(photo_id)
-            #security reason if not owner redirect to profile
+            # security reason if not owner redirect to profile
             if user_id == photo["user_id"]:
                 return render_template('editPost.html', photo=photo, session=getSession)
             else:
                 return redirect(url_for('profile'))
     else:
         return redirect(url_for('header'))
-
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -290,7 +288,9 @@ def search():
         if request.method == 'POST':
             query = request.form['query']
             photos = db.search_photos(query)
-            return render_template('search.html', session=getSession, photos=photos, query=query)
+            tokenStr = json.loads(json.dumps(session.get('user')))
+            sessionStr = tokenStr["userinfo"]
+            return render_template('search.html', session=sessionStr, photos=photos, query=query)
         else:
             return render_template('search.html', session=getSession)
     else:
@@ -322,4 +322,3 @@ def signUpPage():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
-
