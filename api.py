@@ -152,7 +152,7 @@ def createCommentAPI():
     return jsonify({"success": True})
 
 @api.route("/api/comments/get/<photo_id>", methods=['GET'])
-@login_required
+# @login_required
 def getCommentsbyPhotoIdAPI(photo_id):
     comments = db.get_comments_by_photo_id(photo_id)
     json = []
@@ -201,7 +201,7 @@ def createLikeAPI(provider, user_id, photo_id):
         
 
 @api.route("/api/likes/get/photo/<photo_id>", methods=['GET'])
-@login_required
+# @login_required
 def getLikesbyPhotoIdAPI(photo_id):
     likes = db.get_likes_by_photo_id(photo_id)
     json = []

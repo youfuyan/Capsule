@@ -91,12 +91,12 @@ This is the parent `<div>` that contains the menu and the content area.
 #layout.active #menu {
     left: 250px;
     width: 250px;
-    top: 5em;
+    top: 4.5em;
 }
 
 #layout.active .menu-link {
     left: 250px;
-    top: 8em;
+    top: 7em;
 }
 
 
@@ -109,7 +109,7 @@ appears on the left side of the page.
   margin-left: -250px; /* "#menu" width */
   width: 250px;
   position: fixed;
-  top: 5em;;
+  top: 4.5em;
   left: 0;
   bottom: 0;
   z-index: 1000; /* so the menu or its navicon stays above all content */
@@ -199,7 +199,7 @@ small screens.
   width: 2em;
   height: auto;
   padding: 2.1em 1.6em;
-  top: 8em;
+  top: 7em;
 }
 
 .menu-link:hover,
@@ -237,7 +237,7 @@ small screens.
 /* for the right side body  */
 #main {
   width: 80%;
-  margin-top: 5em;
+  margin-top: 4.5em;
   position:absolute;
   right: 0;
   left: 250px;
@@ -292,7 +292,7 @@ Hides the menu at `48em`, but modify this based on your app's needs.
   }
   #menu {
       left: 250px;
-      top: 5em;
+      top: 4.5em;
   }
 
   .menu-link {
