@@ -13,7 +13,8 @@
 <!-- header and sideBar -->
 
 {% call sideBar.sideBar() %}
-<div id="{{session.sub}}" class="owner-id-gallery-page container">
+<div id="{{session.sub}}" class="owner-id-gallery-page">
+  <div id="container">
   <ul class="pure-g">
     {% for photo in photos %}
     <li class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 pure-u-xl-1-4 inner-container">
@@ -43,7 +44,7 @@
     </li>
     {% endfor %}
   </ul>
-
+</div>
 </div>
 
 
