@@ -2,6 +2,7 @@
 <title>Vertical Gallery Page</title>
 <link rel="stylesheet" href="../static/css/search.css" />
 <script src="../static/js/search.js" defer></script>
+<script src="../static/js/gallery.js" defer></script>
 {% endblock %} {% block content %} {% import 'responsiveSideBar.html' as sideBar
 %}
 
@@ -23,19 +24,41 @@
 {% if query %}
 <p>You searched for "{{ query }}".</p>
 {% if photos %}
-<ul class="pure-g">
-  {% for photo in photos %}
-  <li class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3">
-    <a href="{{ photo.image_url }}">
-      <img src="{{ photo.image_url }}" alt="{{ photo.title }}" />
-    </a>
-    <h2>{{ photo.title }}</h2>
-    {% if photo.description %}
-    <p>{{ photo.description }}</p>
-    {% endif %}
-  </li>
-  {% endfor %}
-</ul>
+<div id="{{session.sub}}" class="owner-id-gallery-page container">
+  <div class="pure-g purefix-stretch">
+    {% for photo in photos %}
+    <!-- <li class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3"> -->
+    <div
+      id="{{photo.id}}"
+      class="post post-{{loop.index}} pure-u-1 pure-u-md-1-2 pure-u-lg-1-3"
+    >
+      <a href="{{ photo.image_url }}">
+        <img src="{{ photo.image_url }}" alt="{{ photo.title }}" />
+      </a>
+      <h2>{{ photo.title }}</h2>
+      {% if photo.description %}
+      <p>{{ photo.description }}</p>
+
+      <div class="post-icons">
+        <span class="like-icon">
+          <div>
+            <i
+              id="like-button-{{loop.index}}"
+              class="like-button fa fa-thumbs-up"
+            ></i>
+            <p class="like-number">0</p>
+          </div>
+          <a href="/comments/{{photo.id}}" id="comment" uid="{{photo.id}}">
+            <i class="fa fa-comment"></i>
+            <p class="comment-number">0</p>
+          </a>
+        </span>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
 {% else %}
 <p>No results found.</p>
 <div class="pure-u-1-3 img">

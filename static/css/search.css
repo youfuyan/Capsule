@@ -102,3 +102,79 @@ input[type='text']::placeholder:focus {
 .pure-u-1-3 img:not(:last-child) {
   margin-right: 10px;
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins';
+  font-weight: lighter;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 84%;
+  float: center;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.post img {
+  align-items: center;
+  max-width: 100%;
+  height: auto;
+  min-height: 250px;
+}
+
+.post-icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-icons span {
+  display: flex;
+  align-items: space-evenly;
+  font-size: 20px;
+  color: black;
+  cursor: auto;
+}
+
+/* change this to desired color */
+.is-liked {
+  color: rgb(253, 216, 92);
+}
+
+.like-button {
+  cursor: pointer;
+}
+
+/* .post-icons .like-icon .pure-menu-link {
+  display: flex;
+} */
+
+.like-number {
+  display: inline-block;
+}
+
+.comment-number {
+  display: inline-block;
+}
+
+#comment {
+  margin-left: 0.5em;
+}
+
+@media (min-width: 30em) {
+  .post {
+    text-align: left;
+  }
+}
