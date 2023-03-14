@@ -172,7 +172,6 @@ def addPost():
             body = request.form['body']
             location = request.form['location']
             photo = request.files['image']
-            is_draft = request.form.get('draft') == 'on'
 
             photo_string = base64.b64encode(photo.read())
             photo_name = secure_filename(photo.filename)
@@ -192,6 +191,24 @@ def addPost():
         return render_template('addPost.html', session=getSession)
     else:
         return redirect(url_for('header'))
+    
+@app.route("/deletePost", methods=["POST"])
+def deletePost():
+    getSession = session.get('user')
+    if getSession:
+        tokenStr = json.loads(json.dumps(session.get('user')))
+        user_id = tokenStr["userinfo"]["sub"]
+
+        if request.method == 'POST':
+            # Get the form data
+            photo_id = request.form['photo_id']
+            photo = db.get_photo_by_image_id(photo_id)
+            if user_id == photo["user_id"]:
+                imagekit.delete_file(file_id=photo_id)
+                db.delete_photo(photo_id)
+
+            return redirect(url_for('profile'))
+
 
 
 @app.route("/profile", methods=["GET", "POST"])
@@ -206,7 +223,8 @@ def profile():
         posts_count = len(photos)
         personal_likes_count = len(personal_likes)
         
-        return render_template('profile.html', photos=photos, session=getSession, posts_count=posts_count, personal_likes_count=personal_likes_count)
+        return render_template('profile.html', photos=photos, session=getSession, 
+                               posts_count=posts_count, personal_likes_count=personal_likes_count)
     else:
         return redirect(url_for('header'))
 
@@ -229,50 +247,36 @@ def liked():
             photo = db.get_photo_by_image_id(personal_like["photo_id"])
             photos.append(photo)
         
-        return render_template('profile.html', photos=photos, personal_likes=personal_likes, session=getSession, posts_count=posts_count, personal_likes_count=personal_likes_count)
+        return render_template('profile.html', photos=photos, personal_likes=personal_likes, session=getSession, 
+                               posts_count=posts_count, personal_likes_count=personal_likes_count)
     else:
         return redirect(url_for('header'))
 
 
-@app.route("/editProfile", methods=["GET", "POST"])
+@app.route("/editPost", methods=["GET", "POST"])
 def editProfile():
     getSession = session.get('user')
     if getSession:
         tokenStr = json.loads(json.dumps(session.get('user')))
         user_id = tokenStr["userinfo"]["sub"]
-        # print(request.method)
-        # print(quote(user_id))
+        print(user_id)
         if request.method == 'POST':
-        #     print("in the thing")
-        #     username = request.form['username']
-        #     conn = http.client.HTTPConnection(env.get("AUTH0_DOMAIN"))
-        #     headers = {'authorization': "Bearer " + auth_access_token,
-        #                 'nickname':username,
-        #                 "connection": "Initial-Connection",
-        #                 'client_id': env.get("AUTH0_CLIENT_ID")}
-        #     # conn.request("PATCH", "/api/v2/users/" + quote(user_id), headers=headers)
-        #     conn.request("GET", "/api/v2/users")
-        #     res= conn.getresponse()
-        #     data=res.read()
-        #     print(json.loads(data))
-            # print(data.decode("utf-8"))
-            # return redirect(
-            #     "https://" + env.get("AUTH0_DOMAIN")
-            #     + "/api/v2/users/" + quote(user_id) + "?"
-            #     + urlencode(
-            #         {
-            #             "authorization": "Bearer " + auth_access_token,
-            #             "returnTo": url_for("header", _external=True),
-            #             "client_id": env.get("AUTH0_CLIENT_ID"),
-            #             "nickname": username
-            #         },
-            #         quote_via=quote_plus,
-            #     )
-            # )
-            # return redirect(url_for('profile'))
-            return render_template('editProfile.html', session=getSession)
+            id = request.form['photo_id']
+            title = request.form['title']
+            body = request.form['body']
+            location = request.form['location']
+            image = request.form['image']
+            print(id, title, body, location, image)
+            db.edit_photo(id, title, body, location, image)
+            return redirect(url_for('profile'))
         elif request.method == 'GET':
-            return render_template('editProfile.html', session=getSession)
+            photo_id = request.args.get('photo_id')
+            photo = db.get_photo_by_image_id(photo_id)
+            #security reason if not owner redirect to profile
+            if user_id == photo["user_id"]:
+                return render_template('editPost.html', photo=photo, session=getSession)
+            else:
+                return redirect(url_for('profile'))
     else:
         return redirect(url_for('header'))
 

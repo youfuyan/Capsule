@@ -48,6 +48,7 @@
 
 
 .upload-box {
+    position: relative;
     display: inline-block;
     width: 10em;
     height: 10em;
@@ -125,4 +126,16 @@
     cursor: pointer;
     font-size: 17px;
     border: none;
+}
+
+.edit-post{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: default;
+}
+
+
+.hidden-post{
+    display: none;
 }
