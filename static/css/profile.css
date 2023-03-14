@@ -1,12 +1,22 @@
+* {
+  font-family: 'Poppins';
+  font-weight: lighter;
+}
+
 .user-icon{
     width: 100px;
     margin-right: 5em;
+    border-radius: 50%;
 }
 
 .profile-details{
     padding: 5em;
     border-bottom: 1px solid #ccc;
-    text-align: right;
+    text-align: left;
+}
+
+.profile-icon {
+  text-align: right;
 }
 
 .profile-subdetails{
@@ -38,6 +48,7 @@
 
 
 .upload-box {
+    position: relative;
     display: inline-block;
     width: 10em;
     height: 10em;
@@ -133,4 +144,16 @@
     cursor: pointer;
     font-size: 17px;
     border: none;
+}
+
+.edit-post{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: default;
+}
+
+
+.hidden-post{
+    display: none;
 }

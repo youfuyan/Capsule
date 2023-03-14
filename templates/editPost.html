@@ -2,7 +2,7 @@
 
 {% block head_others %} 
   <link rel="stylesheet" href="../static/css/editPost.css">
-  <script src="../static/js/addPost.js" defer></script>
+  <script src="../static/js/editPost.js" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -11,16 +11,23 @@
   <!-- header and sideBar -->
 
   {% call sideBar.sideBar() %}
+  
+  <form id="delete-post-form" action="/deletePost" method="post">
+      <input id="photo-id" type="text" class="hidden" name="photo_id" value="{{photo.id}}">
+  </form>
+  
   <form id="post-form" method="post" action="/editPost" enctype="multipart/form-data" class="pure-form pure-form-aligned">
     <fieldset>
       {% macro addImages() -%}
+
+      <input id="photo-id" type="text" class="hidden" name="photo_id" value="{{photo.id}}">
       <div id="add-images">
 
         <div class="upload-box">
           <label for="file-upload" class="upload-label">
-            <i class="fa fa-plus"></i>
+            <img class="edit-image" src="{{photo.image_url}}">
           </label>
-          <input name="image" type="file" id="file-upload" class="upload-input">
+          <input name="image" type="text" id="file-upload" class="upload-input" value="{{photo.image_url}}">
           <div id="image-preview" class="upload-preview"></div>
         </div>
 
@@ -35,12 +42,12 @@
 
       <!-- add title -->
       <div id="add-title">
-        <input id="title" name="title" type="text" placeholder="Add a Title">
+        <input id="title" name="title" type="text" value="{{photo.title}}">
       </div>
 
       <!-- add body text  -->
       <div id="add-body">
-        <textarea rows="15" id="body" name="body" rows="10" placeholder="Add text"></textarea>
+        <textarea rows="15" id="body" name="body" rows="10">{{photo.description}}</textarea>
       </div>
 
 
@@ -51,19 +58,19 @@
         <label for="locate" class="upload-location">
           <i class="fas fa-map-marker-alt"></i>
         </label>
-        <input type="text" name="location" id="locate" class="choose-location" placeholder="Location...">
+        <input type="text" name="location" id="locate" class="choose-location" value="{{photo.location}}">
         <!-- <div id="loc-preview" class="upload-preview"></div> -->
         <!-- </div> -->
 
         <!-- <div id="save-post"> -->
         <!-- post or save as a draft -->
-        <button id="save-draft">
-          <i class="far fa-edit"></i>
+        <button type="button" id="delete-button">
+          <i class="fas fa-trash"></i>
           <br>
-          Save Draft
+          Delete
         </button>
 
-        <button type="submit" class="add-post-button">Save</button>
+        <button type="submit" class="add-post-button">Edit</button>
         <!-- </div> -->
       </div>
 
