@@ -2,6 +2,7 @@
 
 {% block head_others %} 
   <link rel="stylesheet" href="../static/css/profile.css">
+  <script src="../static/js/profile.js" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -58,14 +59,17 @@
       {% for photo in photos %}
       <div class="pure-u-1-3">
         <div class="upload-box">
-          <img class="profile-img" src="{{photo.image_url}}" alt="Post">
+          <img id="{{loop.index}}" class="profile-img" src="{{photo.image_url}}" alt="Post">
+          {% if request.path == "/profile" %}
+          <form action="/editPost" method="get">
+            <input class="hidden" type="text" name="photo_id" value="{{photo.id}}">
+            <div class="edit-post-container">
+              <button id="button-{{loop.index}}" class="edit-post" type="submit">Edit</button>
+            </div>
+            
+          </form>  
+          {% endif %}
         </div>
-        {% if request.path == "/profile" %}
-        <form action="/editPost" method="get">
-          <input type="text" name="photo_id" value="{{photo.id}}">
-          <button type="submit"></button>
-        </form>  
-        {% endif %}
 
       </div>
       {% endfor %}

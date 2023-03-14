@@ -181,6 +181,24 @@ def addPost():
         return render_template('addPost.html', session=getSession)
     else:
         return redirect(url_for('header'))
+    
+@app.route("/deletePost", methods=["POST"])
+def deletePost():
+    getSession = session.get('user')
+    if getSession:
+        tokenStr = json.loads(json.dumps(session.get('user')))
+        user_id = tokenStr["userinfo"]["sub"]
+
+        if request.method == 'POST':
+            # Get the form data
+            photo_id = request.form['photo_id']
+            photo = db.get_photo_by_image_id(photo_id)
+            if user_id == photo["user_id"]:
+                imagekit.delete_file(file_id=photo_id)
+                db.delete_photo(photo_id)
+
+            return redirect(url_for('profile'))
+
 
 
 @app.route("/profile", methods=["GET", "POST"])

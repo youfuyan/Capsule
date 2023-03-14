@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block head_others %} 
-  <link rel="stylesheet" href="../static/css/addPost.css">
-  <script src="../static/js/addPost.js" defer></script>
+  <link rel="stylesheet" href="../static/css/editPost.css">
+  <script src="../static/js/editPost.js" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -11,11 +11,16 @@
   <!-- header and sideBar -->
 
   {% call sideBar.sideBar() %}
+  
+  <form id="delete-post-form" action="/deletePost" method="post">
+      <input id="photo-id" type="text" class="hidden" name="photo_id" value="{{photo.id}}">
+  </form>
+  
   <form id="post-form" method="post" action="/editPost" enctype="multipart/form-data" class="pure-form pure-form-aligned">
     <fieldset>
       {% macro addImages() -%}
 
-      <input type="text" name="photo_id" value="{{photo.id}}">
+      <input id="photo-id" type="text" class="hidden" name="photo_id" value="{{photo.id}}">
       <div id="add-images">
 
         <div class="upload-box">
@@ -59,13 +64,13 @@
 
         <!-- <div id="save-post"> -->
         <!-- post or save as a draft -->
-        <button id="save-draft">
-          <i class="fa-regular fa-trash"></i>
+        <button type="button" id="delete-button">
+          <i class="fas fa-trash"></i>
           <br>
           Delete
         </button>
 
-        <button type="submit" class="add-post-button">Post</button>
+        <button type="submit" class="add-post-button">Edit</button>
         <!-- </div> -->
       </div>
 
