@@ -10,8 +10,10 @@ body {
   background-color: #72ccff;
   width: 100%;
   color: white;
-  padding: .25em;
-  padding-left: .8em;
+  /* padding: .25em;
+  padding-left: .8em; */
+  padding-top:.25em;
+  padding-bottom:.25em;
   font-family: 'Poppins';
   font-weight: bolder;
   letter-spacing: 2px;
@@ -29,6 +31,37 @@ a:link, a:visited, a:hover, a:active {
 .pure-img-responsive {
   max-width: 100%;
   height: auto;
+}
+
+.heading .capsule{
+  padding-left:.8em;
+}
+
+.heading .profile{
+  line-height:40px;
+  font-size:50%;
+  float:right;
+  margin-right:50px;
+  margin-top:10px;
+}
+
+.heading .icon{
+  border-radius:50%;
+  height: 40px;
+  margin-right:10px;
+  vertical-align: middle;
+}
+
+.heading .login{
+  float:right;
+  font-size:40%;
+  color:#72ccff;
+  margin-top:12.5px;
+  margin-right:10px;
+  border-radius: 10px;
+  color: rgb(128, 128, 128);
+  padding-top:5px;
+  padding-bottom:5px;
 }
 
 /*
@@ -289,13 +322,19 @@ Hides the menu at `48em`, but modify this based on your app's needs.
       left: 250px;
   }
 
-  #main {
+  /* #main {
     width: 100%;
-  }
+  } */
 
   .content {
     max-width: -webkit-fill-available;
     margin-left: -250px;
+  }
+  .heading .profile{
+    margin-right:0;
+  }
+  .heading .profile span{
+    display:none;
   }
 }
 

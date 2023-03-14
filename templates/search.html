@@ -29,13 +29,13 @@
 {% if photos %}
 <ul class="pure-g">
   {% for photo in photos %}
-  <li class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3">
+  <li class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-3 post-res">
     <a href="{{ photo.image_url }}">
       <img src="{{ photo.image_url }}" alt="{{ photo.title }}" />
     </a>
     <h2>{{ photo.title }}</h2>
     {% if photo.description %}
-    <p>{{ photo.description }}</p>
+    <div class="post-body">{{ photo.description }}</div>
     {% endif %}
   </li>
   {% endfor %}

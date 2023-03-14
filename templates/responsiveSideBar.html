@@ -15,7 +15,17 @@
   {% macro sideBar() -%}
   <link rel="stylesheet" href="../static/css/responsiveSideBar.css">  
   <div class="heading">
-    <a href="/gallery">Capsule</a>
+    <a class="capsule" href="/gallery">Capsule</a>
+    {% if session['user'] %} 
+    
+    <a class="profile" href='/profile'>
+      <img class="icon" src="{{ session['user']['userinfo']['picture'] }}">
+      <span>{{ session['user']['userinfo']['nickname'] }}</span>
+    </a>
+    
+    {% else %} 
+    <a class="login pure-button" href='/login'>Login</a>
+    {% endif %}
   </div>
 
   <div id="layout">

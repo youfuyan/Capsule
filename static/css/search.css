@@ -1,3 +1,8 @@
+* {
+  font-family: 'Poppins';
+  font-weight: lighter;
+}
+
 /* center the search bar */
 .search-container {
   display: flex;
@@ -5,6 +10,12 @@
   align-items: center;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.post-body {
+  height: 15em;
+  overflow-y: auto;
+  font-size: small;
 }
 
 /* set background color and shape of search bar */
