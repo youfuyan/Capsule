@@ -1,9 +1,74 @@
 
+.post-content {
+  max-width: 1000px;
+	margin: 0 auto;
+	padding: 20px;
+	width: 84%;
+	float: center;
+  display: flex;
+	flex-direction: column;
+}
+
+.post-author {
+  font-size: small;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  font-size: .6em;
+}
+
+.post-content img {
+  align-items: center;
+  max-width: 100%;
+  height: auto;
+  min-height: 250px;
+}
+
+.post-author img {
+  border-radius: 50%;
+  width: 15px;
+  min-height: 15px;
+}
+
+.post-user {
+  display: inline;
+  margin-left: .5em;
+}
+
+.post-time {
+  display: inline;
+  margin-left: 5em;
+}
+
+.post-title, .post-body {
+  padding: 0;
+  font-size: 1em;
+  /* margin: .5em; */
+}
+
+.post-title {
+  font-size: 1.5em;
+  font-weight: bolder;
+}
+
+.comment-title {
+  margin-left: 8%;
+  font-family: 'Poppins';
+  font-weight: bolder;
+  font-size: medium;
+  border-top: 1px solid #ccc;
+  padding-top: 1em;
+}
+
+.comment-title p {
+  display: inline;
+}
+
+
 /* Set the height of the comments section to 100% */
 .comments {
   /* height: 100%; */
   /* width: 83%; */
-  margin-left: 12%;
+  margin-left: 10%;
   font-family: 'Poppins';
   font-weight: lighter;
   font-size: small;
@@ -11,7 +76,7 @@
 
 .comment-container {
   padding: 10px;
-  border-bottom: .5px solid #ccc;
+  /* border-bottom: .5px solid #ccc; */
 }
 
 /* Set the width of the comments container to 100% on small screens */
@@ -33,10 +98,10 @@
 }
 
 .input-section {
-  margin-left: 12%;
+  margin-left: 10%;
   margin-top: 20px;
+  font-size: small;
 }
-
 
 .comment-input {
   display:inline-flex;
@@ -56,7 +121,7 @@
   color: #fff;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 17px;
+  font-size: small;
   border: none;
 }
 

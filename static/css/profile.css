@@ -1,6 +1,12 @@
+* {
+  font-family: 'Poppins';
+  font-weight: lighter;
+}
+
 .user-icon{
     width: 100px;
     margin-right: 5em;
+    border-radius: 50%;
 }
 
 .profile-details{

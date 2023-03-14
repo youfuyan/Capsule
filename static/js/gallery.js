@@ -1,4 +1,5 @@
-async function handleAddLike(provider, userId, photoId){
+async function handleAddLike(provider, userId, photoId) {
+    console.log(arguments);
     try{
         let fetchURL = "/api/likes/create/" + provider + "/" + userId + "/" + photoId;
         let res = await fetch(fetchURL, {
@@ -104,12 +105,13 @@ function personalLikesCheck(){
 }
 
 function generalLikesCheck(){
-    let posts = document.querySelectorAll(".post");
+    let posts = document.querySelectorAll(".post-icons");
     posts.forEach((post) => {
         photoId = post.id;
 
         handleGetLikesPhoto(photoId).then((data) => {
-            let likeElement = post.querySelector(".like-number");
+            let likeElement = post.querySelector('#like-num');
+            // let likeElement = post.querySelector(".like-number");
             likeElement.innerHTML = data.length;
         })
     })
@@ -131,12 +133,13 @@ async function handleGetCommentsPhoto(photoId){
 }
 
 function handleCommentNumber() {
-  let posts = document.querySelectorAll(".post");
+  let posts = document.querySelectorAll(".post-icons");
     posts.forEach((post) => {
         photoId = post.id;
 
         handleGetCommentsPhoto(photoId).then((data) => {
-            let commentElement = post.querySelector(".comment-number");
+            // let commentElement = post.querySelector(".comment-number");
+            let commentElement = post.querySelector("#comment-num");
             commentElement.innerHTML = data.length;
         })
     })

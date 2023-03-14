@@ -131,20 +131,30 @@ def comments(id):
         # print(newComment)
         db.create_comment(user_id, photo_id, newComment)
         return redirect(url_for('comments', id=id))
-        # return render_template('comments.html', session=getSession, comments=allComments)
       
       # for get request
       else:
+        photo=db.get_photo_by_image_id(id)
         allComments = db.get_comments_by_photo_id(id)
         commentsJson = []
+        photoJson = []
+        corresponding_user_name = db.get_user_by_id(photo[6])[1]
+        corresponding_user_profile_img = db.get_user_by_id(photo[6])[3]
+        photoJson.append({"title": photo[1], 
+                    "description": photo[2],
+                    "user_name": corresponding_user_name, 
+                    "user_img_url": corresponding_user_profile_img, 
+                    "post_timestamp": photo[4],
+                    "post_img_url": photo[5] })
+        
+
         for comment in allComments:
           userId = comment["user_id"]
           userName = db.get_user_by_id(userId)[1]
-          photo_url = db.get_user_by_id(userId)[3]
           commentsJson.append({"id": comment[0], "comment": comment[1],
-                    "user_name": userName, "photo_id": comment[3], "timestamp": comment[4], "photo_url": photo_url })
+                    "user_name": userName, "photo_id": comment[3], "timestamp": comment[4]})
         
-        return render_template('comments.html', session=getSession, comments=commentsJson)
+        return render_template('comments.html', session=getSession, comments=commentsJson, photoJson=photoJson)
     else:
         return redirect(url_for('header'))
 
