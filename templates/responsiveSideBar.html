@@ -21,6 +21,7 @@
     <a class="profile" href='/profile'>
       <img class="icon" src="{{ session['user']['userinfo']['picture'] }}">
       <span>{{ session['user']['userinfo']['nickname'] }}</span>
+      <a class="logout pure-button" href='/logout'>Logout</a>
     </a>
     
     {% else %} 

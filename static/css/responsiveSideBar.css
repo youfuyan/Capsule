@@ -64,6 +64,18 @@ a:link, a:visited, a:hover, a:active {
   padding-bottom:5px;
 }
 
+.heading .logout {
+  float:right;
+  font-size:30%;
+  color:#72ccff;
+  margin-top:12px;
+  margin-right:10px;
+  border-radius: 10px;
+  color: rgb(128, 128, 128);
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
 /*
 Add transition to containers so they can push in and out.
 */
