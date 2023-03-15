@@ -49,6 +49,7 @@
 // }))
 
 
-function editButton() {
-    document.getElementById("edit-form").submit();
+function editButton(e) {
+    const formId = "edit-form-" + e;
+    document.getElementById(formId).submit();
 }

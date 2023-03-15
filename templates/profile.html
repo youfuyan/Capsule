@@ -55,10 +55,10 @@
         <div class="upload-box">
           <img id="{{loop.index}}" class="profile-img" src="{{photo.image_url}}" alt="Post">
           {% if request.path == "/profile" %}
-          <form id="edit-form" action="/editPost" method="get">
+          <form id="edit-form-{{loop.index}}" action="/editPost" method="get">
             <input class="hidden" type="text" name="photo_id" value="{{photo.id}}">
             <div class="edit-post-container">
-              <a id="button-{{loop.index}}" onclick="editButton()" class="edit-post" type="submit"><i class="fas fa-edit"></i></a>
+              <a id="button-{{loop.index}}" onclick="editButton({{loop.index}})" class="edit-post" type="submit"><i class="fas fa-edit"></i></a>
             </div>
             
           </form>  
