@@ -19,7 +19,6 @@ body {
   font-size: small;
 }
 
-
 /* center the search box and button */
 .search-wrapper {
   display: flex;
@@ -145,6 +144,12 @@ body {
   max-width: 100%;
   height: auto;
   min-height: 250px;
+}
+
+.post-body {
+  height: 10em;
+  overflow-y: auto;
+  font-size: small;
 }
 
 .post-icons {
