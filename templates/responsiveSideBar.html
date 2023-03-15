@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.1/pure-min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+  </head>
+
+  <!-- reference: https://purecss.io/layouts/ -->
+
+  {% macro sideBar() -%}
+  <link rel="stylesheet" href="../static/css/responsiveSideBar.css">  
+  <div class="heading">
+    <a class="capsule" href="/gallery">Capsule</a>
+    {% if session['user'] %} 
+    
+    <a class="profile" href='/profile'>
+      <img class="icon" src="{{ session['user']['userinfo']['picture'] }}">
+      <span>{{ session['user']['userinfo']['nickname'] }}</span>
+      <a class="logout pure-button" href='/logout'>Logout</a>
+    </a>
+    
+    {% else %} 
+    <a class="login pure-button" href='/login'>Login</a>
+    {% endif %}
+  </div>
+
+  <div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+      <!-- Hamburger icon -->
+      <span></span>
+      <!-- <i class="fas fa-bars"></i> -->
+    </a>
+
+    <div id="menu">
+      <div class="pure-menu">
+        <ul class="pure-menu-list">
+          <li class="pure-menu-item"><a href="/gallery" class="pure-menu-link"><i class="fas fa-image"></i> Gallery</a>
+          </li>
+          <li class="pure-menu-item"><a href="/search" class="pure-menu-link"><i class="fas fa-search"></i> Search</a>
+          </li>
+          <li class="pure-menu-item"><a href="/liked" class="pure-menu-link"><i class="far fa-heart"></i> Liked</a>
+          </li>
+          <li class="pure-menu-item"><a href="/addPost" class="pure-menu-link"><i class="fas fa-plus"></i> New Post</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="main">
+    <div class="content">
+      {{ caller() }}
+    </div>
+  </div>
+
+  <script src="../static/js/sideBar.js"></script>
+
+  {%- endmacro %}
+
+
+  <body>
+    {% call sideBar() %}
+    <p>testtt</p>
+    {% endcall %}
+
+  </body>
+
+</html>

@@ -1,12 +1,12 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c4ef9d125c46aaa8bc3a27ebb8e38fabddd4df2e41b8310cdf482acc8ec9cf93"
+            "sha256": "1e8808ef1f9359d0c615d3d7b2f99c889c81d92e80292e1c67f89d2662fd60ed"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_full_version": "3.9.12",
-            "python_version": "3.9"
+            "python_full_version": "3.10.6",
+            "python_version": "3.10"
         },
         "sources": [
             {
@@ -234,11 +234,11 @@
         },
         "flask": {
             "hashes": [
-                "sha256:642c450d19c4ad482f96729bd2a8f6d32554aa1e231f4f6b4e7e5264b16cca2b",
-                "sha256:b9c46cc36662a7949f34b52d8ec7bb59c0d74ba08ba6cb9ce9adc1d8676d9526"
+                "sha256:7eb373984bf1c770023fce9db164ed0c3353cd0b53f130f4693da0ca756a2e6d",
+                "sha256:c0bec9477df1cb867e5a67c9e1ab758de9cb4a3e52dd70681f59fa40a62b3f2d"
             ],
             "index": "pypi",
-            "version": "==2.2.2"
+            "version": "==2.2.3"
         },
         "gunicorn": {
             "hashes": [
@@ -256,13 +256,13 @@
             "markers": "python_version >= '3.5'",
             "version": "==3.4"
         },
-        "importlib-metadata": {
+        "imagekitio": {
             "hashes": [
-                "sha256:7efb448ec9a5e313a57655d35aa54cd3e01b7e1fbcf72dce1bf06119420f5bad",
-                "sha256:e354bedeb60efa6affdcc8ae121b73544a7aa74156d047311948f6d711cd378d"
+                "sha256:c5e288b748272e01f1bea42e3137ed4a25d1f61c19c4c48f6eeaceecb62c6ff1",
+                "sha256:d98c97933a973dfbda7ac4124df8682d5f1126de4fa302dee1645586537f12fa"
             ],
-            "markers": "python_version < '3.10'",
-            "version": "==6.0.0"
+            "index": "pypi",
+            "version": "==3.0.1"
         },
         "itsdangerous": {
             "hashes": [
@@ -428,13 +428,28 @@
             "index": "pypi",
             "version": "==2.28.2"
         },
+        "requests-toolbelt": {
+            "hashes": [
+                "sha256:380606e1d10dc85c3bd47bf5a6095f815ec007be7a8b69c878507068df059e6f",
+                "sha256:968089d4584ad4ad7c171454f0a5c6dac23971e9472521ea3b6d49d610aa6fc0"
+            ],
+            "version": "==0.9.1"
+        },
         "setuptools": {
             "hashes": [
-                "sha256:16ccf598aab3b506593c17378473978908a2734d7336755a8769b480906bec1c",
-                "sha256:b440ee5f7e607bb8c9de15259dba2583dd41a38879a7abc1d43a71c59524da48"
+                "sha256:e5fd0a713141a4a105412233c63dc4e17ba0090c8e8334594ac790ec97792330",
+                "sha256:f106dee1b506dee5102cc3f3e9e68137bbad6d47b616be7991714b0c62204251"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==67.2.0"
+            "version": "==67.4.0"
+        },
+        "shell": {
+            "hashes": [
+                "sha256:64e3347d1dd2c8f3c3f3df5e6ebe9084d768ae20985aef6793854b9f47d4045a",
+                "sha256:6fbaa88f85de228ddecef33cb1e9037f4959f6f76942b01769e4139a038f6513"
+            ],
+            "index": "pypi",
+            "version": "==1.0.1"
         },
         "urllib3": {
             "hashes": [
@@ -446,19 +461,11 @@
         },
         "werkzeug": {
             "hashes": [
-                "sha256:7ea2d48322cc7c0f8b3a215ed73eabd7b5d75d0b50e31ab006286ccff9e00b8f",
-                "sha256:f979ab81f58d7318e064e99c4506445d60135ac5cd2e177a2de0089bfd4c9bd5"
+                "sha256:2e1ccc9417d4da358b9de6f174e3ac094391ea1d4fbef2d667865d819dfd0afe",
+                "sha256:56433961bc1f12533306c624f3be5e744389ac61d722175d543e1751285da612"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.2.2"
-        },
-        "zipp": {
-            "hashes": [
-                "sha256:23f70e964bc11a34cef175bc90ba2914e1e4545ea1e3e2f67c079671883f9cb6",
-                "sha256:e8b2a36ea17df80ffe9e2c4fda3f693c3dad6df1697d3cd3af232db680950b0b"
-            ],
-            "markers": "python_version >= '3.7'",
-            "version": "==3.13.0"
+            "version": "==2.2.3"
         }
     },
     "develop": {}

@@ -1,0 +1,46 @@
+html, body{
+    height:100%;
+    width:100%;
+}
+
+.container{
+    align-items: center;
+    align-content:center;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    height:100%;
+    width:100%
+}
+
+.heading{
+    color:#72ccff;
+    font-weight:bolder;
+    font-family:'Poppins';
+    font-size: 48px;
+
+    text-align: center;
+    padding-bottom: 0.5em;
+}
+
+.pure-form-aligned{
+    text-align:center;
+    
+}
+
+
+.pure-form input[type="text"] {
+    width: 20%;
+    min-width:190px;
+    border-radius: 15px;
+}
+
+#signUp{
+    width:20%;
+    min-width:190px;
+
+    color:white;
+    background-color: #72ccff;
+    border-radius: 15px;
+}
+

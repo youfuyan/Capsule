@@ -1,50 +1,74 @@
+{% macro sideBar() -%}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.1/pure-min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.3.0/css/all.css">
-
-    <link rel="stylesheet" href="../static/css/sideBar.css">
-    <script src="../static/js/myjs.js"></script>
+    <link rel="stylesheet" href="../static/css/header.css">
   </head>
-
-  {% macro header() -%}
-
-  <div class="heading">
-      Capsule
-  </div>
-
-  <div class="sidebar">
-    <div class="pure-menu">
-      <ul class="pure-menu-list">
-        <li class="pure-menu-item"><a href="/gallery" class="pure-menu-link"><i class="fas fa-image"></i> Gallery</a>
-        </li>
-        <li class="pure-menu-item"><a href="/search" class="pure-menu-link"><i class="fas fa-search"></i> Search</a>
-        </li>
-        <li class="pure-menu-item"><a href="/liked" class="pure-menu-link"><i class="far fa-heart"></i> Liked</a></li>
-        <li class="pure-menu-item"><a href="/saved" class="pure-menu-link"><i class="far fa-bookmark"></i> Saved</a>
-        </li>
-        <li class="pure-menu-item"><a href="/addPost" class="pure-menu-link"><i class="fas fa-plus"></i> New Post</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  {%- endmacro %}
 
   <body>
 
-    <!-- <div class="pure-g"> -->
-      {{ header() }}
+    <div class="heading">
+      <a id="appName" href="/gallery">Capsule</a>
+    </div>
 
-      <!-- the right part body  -->
-      <div>
-        test
+    <div id="container" class="pure-g">
+      <div id="layout" class="pure-u-1-6">
+        <!-- Menu toggle -->
+        <a href="#menu" id="menuLink" class="menu-link">
+          <!-- Hamburger icon -->
+          <!-- <span>ham</span> -->
+          <i class="fas fa-bars"></i>
+        </a>
+        <div id="menu">
+          <div class="pure-menu">
+            <ul class="pure-menu-list">
+              <li class="pure-menu-item"><a href="/gallery" class="pure-menu-link"><i class="fas fa-image"></i>
+                  Gallery</a>
+              </li>
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link"><i class="fas fa-search"></i>
+                  Search</a>
+              </li>
+              <li class="pure-menu-item"><a href="/profile" class="pure-menu-link"><i class="far fa-heart"></i>
+                  Liked</a></li>
+              <li class="pure-menu-item"><a href="/profile" class="pure-menu-link"><i class="far fa-bookmark"></i>
+                  Saved</a>
+              </li>
+              <li class="pure-menu-item"><a href="/addPost" class="pure-menu-link"><i class="fas fa-plus"></i> New
+                  Post</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-    <!-- </div> -->
+
+      <div id="main" class="pure-u-5-6">
+        <div class="content">
+          {{ caller() }}
+        </div>
+      </div>
+
+    </div>
 
   </body>
+  <script src="../static/js/sideBar.js"></script>
 
 </html>
+
+{%- endmacro %}
+
+
+{% call sideBar() %}
+<p>testtt</p>
+<p>testtt</p>
+<p>testtt</p>
+<p>testtt</p>
+<p>testtt</p>
+{% endcall %}

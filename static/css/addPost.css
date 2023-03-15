@@ -1,6 +1,7 @@
 html, body {
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .upload-box {
@@ -130,7 +131,7 @@ fieldset {
 
 .add-post-button {
   margin-left: 0.5em;
-  width: 10%;
+  width: 150px;
   padding: 10px;
   background-color: #72ccff;
   color: #fff;
@@ -138,10 +139,25 @@ fieldset {
   cursor: pointer;
   font-size: 17px;
   border: none;
+  float: right;
 }
 
 textarea {
   resize: none;
   max-width: 100%;
 
+}
+
+.edit-image{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+@media screen and (min-width: 48em) and (max-width: 1150px){
+  fieldset{
+    margin-right: 8em !important;
+  }
+  
+  
 }
