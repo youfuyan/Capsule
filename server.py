@@ -284,17 +284,14 @@ def editProfile():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     getSession = session.get('user')
-    if getSession:
-        if request.method == 'POST':
-            query = request.form['query']
-            photos = db.search_photos(query)
-            tokenStr = json.loads(json.dumps(session.get('user')))
-            sessionStr = tokenStr["userinfo"]
-            return render_template('search.html', session=sessionStr, photos=photos, query=query)
-        else:
-            return render_template('search.html', session=getSession)
+    if request.method == 'POST':
+        query = request.form['query']
+        photos = db.search_photos(query)
+        tokenStr = json.loads(json.dumps(session.get('user')))
+        sessionStr = tokenStr["userinfo"]
+        return render_template('search.html', session=sessionStr, photos=photos, query=query)
     else:
-        return redirect(url_for('header'))
+        return render_template('search.html', session=getSession)
 
 
 @app.route("/gallery", methods=["GET", "POST"])

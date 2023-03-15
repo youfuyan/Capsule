@@ -66,7 +66,7 @@ def add_photo(id, title, description, location, image_url, user_id):
 
 def get_photos():
     with get_db_cursor() as cur:
-        cur.execute("SELECT * FROM photos")
+        cur.execute("SELECT * FROM photos ORDER BY upload_date DESC")
         return cur.fetchall()
 
 
