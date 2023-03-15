@@ -20,12 +20,12 @@
     
     <a class="profile" href='/profile'>
       <img class="icon" src="{{ session['user']['userinfo']['picture'] }}">
-      <span>{{ session['user']['userinfo']['nickname'] }}</span>
-      <a class="logout pure-button" href='/logout'>Logout</a>
+      <span class="username">{{ session['user']['userinfo']['nickname'] }}</span>
+      <a class="logout" href='/logout'><i class="fas fa-sign-out-alt"></i></a>
     </a>
     
     {% else %} 
-    <a class="login pure-button" href='/login'>Login</a>
+    <a class="login" href='/login'><i class="fas fa-sign-in-alt"></i> Login</a>
     {% endif %}
   </div>
 

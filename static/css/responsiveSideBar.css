@@ -20,6 +20,7 @@ body {
   font-size: 40px;
   top: 0;
   position: fixed;
+  height: 1.3em;
   z-index: 999;
 }
 
@@ -39,9 +40,9 @@ a:link, a:visited, a:hover, a:active {
 
 .heading .profile{
   line-height:40px;
-  font-size:50%;
+  font-size:.5em;
   float:right;
-  margin-right:50px;
+  margin-right:10px;
   margin-top:10px;
 }
 
@@ -52,28 +53,35 @@ a:link, a:visited, a:hover, a:active {
   vertical-align: middle;
 }
 
-.heading .login{
+.heading .login {
   float:right;
-  font-size:40%;
-  color:#72ccff;
-  margin-top:12.5px;
-  margin-right:10px;
-  border-radius: 10px;
-  color: rgb(128, 128, 128);
-  padding-top:5px;
-  padding-bottom:5px;
+  font-size: 40%;
+  margin-right: .5em;
+  margin-top: .6em;
+  letter-spacing: 1px;
+  padding: 5px;
 }
+
+.heading .login:hover {
+  color: rgb(239, 239, 239);
+}
+
 
 .heading .logout {
   float:right;
-  font-size:30%;
-  color:#72ccff;
-  margin-top:12px;
-  margin-right:10px;
-  border-radius: 10px;
-  color: rgb(128, 128, 128);
-  padding-top:5px;
-  padding-bottom:5px;
+  font-size: 60%;
+  margin-right: .5em;
+  margin-top: .7em;
+  /* background-color: transparent; */
+}
+
+.heading .logout:hover {
+  color: rgb(234, 234, 234);
+}
+
+.username {
+  font-size: .7em;
+  letter-spacing: 1px;
 }
 
 /*
@@ -103,12 +111,12 @@ This is the parent `<div>` that contains the menu and the content area.
 #layout.active #menu {
     left: 250px;
     width: 250px;
-    top: 4.5em;
+    /* top: 4.12em; */
 }
 
 #layout.active .menu-link {
     left: 250px;
-    top: 7em;
+    /* top: 7em; */
 }
 
 
@@ -248,8 +256,7 @@ small screens.
 
 /* for the right side body  */
 #main {
-  /* width: 80%; */
-  margin-top: 4.5em;
+  margin-top: 4em;
   position:absolute;
   right: 0;
   left: 250px;
@@ -345,6 +352,7 @@ Hides the menu at `48em`, but modify this based on your app's needs.
   .heading .profile{
     margin-right:0;
   }
+
   .heading .profile span{
     display:none;
   }
