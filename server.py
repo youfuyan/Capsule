@@ -287,11 +287,14 @@ def search():
     if request.method == 'POST':
         query = request.form['query']
         photos = db.search_photos(query)
-        tokenStr = json.loads(json.dumps(session.get('user')))
-        sessionStr = tokenStr["userinfo"]
-        return render_template('search.html', session=sessionStr, photos=photos, query=query)
-    else:
-        return render_template('search.html', session=getSession)
+        if getSession: 
+            tokenStr = json.loads(json.dumps(session.get('user')))
+            sessionStr = tokenStr["userinfo"]
+            return render_template('search.html', session=sessionStr, photos=photos, query=query)
+        else:
+            return render_template('search.html', photos=photos, query=query)
+    return render_template('search.html')
+    
 
 
 @app.route("/gallery", methods=["GET", "POST"])
