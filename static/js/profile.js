@@ -47,3 +47,8 @@
 
 
 // }))
+
+
+function editButton() {
+    document.getElementById("edit-form").submit();
+}
