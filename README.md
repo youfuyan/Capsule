@@ -9,10 +9,9 @@ This is dev branch.
 - Team Name: Capsule
 - App Name: Capsule
 
-- App Link (deploy on dev branch): 
+- App Link (deploy on main branch):
 
 https://capsule-igtc.onrender.com
-
 
 ### Students
 
@@ -27,20 +26,72 @@ https://capsule-igtc.onrender.com
 **Describe the most challenging features you implemented
 (one sentence per bullet, maximum 4 bullets):**
 
-- ...
+- Applied a decorator to restrict some actions (such as commenting or liking) for users who are not logged in.
+- Implemented full text search and fuzzy search to allow users to find photos based on their captions or descriptions.
+- Realized Responsive design that makes web pages render well on different devices and screen sizes and adaptable to mobile devices.
+- Implemented comment and like system to enable real-time communication and feedback among users without reloading the page.
 
 ## Testing Notes
 
 **Is there anything special we need to know in order to effectively test your app? (optional):**
+Here are suggestions for testing:
 
-- testing comments page: click comment icon of the first gallery post
+1. Click the 'exploring' button on the landing page to see the gallery
+2. Without logging in, click any post to see the comments page
+3. Without logging in, click the like button or comment button to redirect to the landing page
+4. Without logging in, click the search button to search for posts by keywords or hashtags
+5. Without logging in, click the 'add new post' button to redirect to the landing page
+6. Click the 'login' button on the landing page to login
+7. After logging, click the 'add new post' button to add a new post
+8. After logging, click the 'search' button to search for posts by keywords or hashtags
+9. After logging, click the 'like' button to like a post
+10. After logging, click the 'comment' button to comment on a post
+11. After logging, click the 'profile' button to see the profile page
+12. On the profile page, click the 'edit profile' button to edit the profile and click the 'save' button to save the changes
+13. On the edit profile page, click the 'delete' button to delete a post
+14. Click the 'logout' button to logout and redirect to the landing page
 
 ## Screenshots of Site
 
 **[Add a screenshot of each key page (around 4)](https://stackoverflow.com/questions/10189356/how-to-add-screenshot-to-readmes-in-github-repository)
 along with a very brief caption:**
 
-![](https://media.giphy.com/media/o0vwzuFwCGAFO/giphy.gif)
+### Gallery
+
+![Gallery](./Demo/1.png 'Gallery')
+
+### Search
+
+![Search](./Demo/2.png 'Search')
+
+### Add new post
+
+![Add new post](./Demo/3.png 'Add new post')
+
+### Comments
+
+![Comments](./Demo/4.png 'Comments')
+
+### Profile
+
+![Profile](./Demo/5.png 'Profile')
+
+## External Dependencies
+
+**Document integrations with 3rd Party code or services here.
+Please do not document required libraries. or libraries that are mentioned in the product requirements**
+
+- Web Hosting: [Render](https://render.com/)
+- Database: [PostgreSQL on Render](https://render.com/docs/postgres)
+- Photo Storage: [Imagekit](https://imagekit.io/)
+- Authentication: [Auth0](https://auth0.com/)
+
+**If there's anything else you would like to disclose about how your project
+relied on external code, expertise, or anything else, please disclose that
+here:**
+None
+
+# Legacy
 
 ## Mock-up
 
@@ -51,22 +102,8 @@ In this space please either provide images (around 4) showing your prototypes, O
 https://www.figma.com/file/t4tzlTlzw1cuJrDizenWRE/Capsule-Prototype?node-id=0%3A1&t=Ao2MbAzyLNCByPPH-1
 
 ### Preview
-![](./Mockups/1.png "Adding new post")
-![](./Mockups/2.png "Searching")
-![](./Mockups/3.png "Gallery")
-![](./Mockups/4.png "Comments")
 
-
-## External Dependencies
-
-**Document integrations with 3rd Party code or services here.
-Please do not document required libraries. or libraries that are mentioned in the product requirements**
-
-- Library or service name: description of use
-- ...
-
-**If there's anything else you would like to disclose about how your project
-relied on external code, expertise, or anything else, please disclose that
-here:**
-
-...
+![](./Mockups/1.png 'Adding new post')
+![](./Mockups/2.png 'Searching')
+![](./Mockups/3.png 'Gallery')
+![](./Mockups/4.png 'Comments')
