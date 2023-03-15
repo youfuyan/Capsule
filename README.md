@@ -58,23 +58,23 @@ along with a very brief caption:**
 
 ### Gallery
 
-![Gallery](./Demo/1.png 'Gallery')
+![Gallery](./Demo/gallery.png 'Gallery')
 
 ### Search
 
-![Search](./Demo/2.png 'Search')
+![Search](./Demo/search.png 'Search')
 
 ### Add new post
 
-![Add new post](./Demo/3.png 'Add new post')
+![Add new post](./Demo/addpost.png 'Add new post')
 
 ### Comments
 
-![Comments](./Demo/4.png 'Comments')
+![Comments](./Demo/comment.png 'Comments')
 
 ### Profile
 
-![Profile](./Demo/5.png 'Profile')
+![Profile](./Demo/profile.png 'Profile')
 
 ## External Dependencies
 
