@@ -9,7 +9,7 @@ This is dev branch.
 - Team Name: Capsule
 - App Name: Capsule
 
-- App Link (deploy on dev branch):
+- App Link (deploy on main branch):
 
 https://capsule-igtc.onrender.com
 
