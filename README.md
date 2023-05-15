@@ -1,6 +1,6 @@
 # Module 1 Group Assignment
 
-CSCI 5117, Spring 2023
+CSCI 5117, Spring 2023, [assignment description](https://canvas.umn.edu/courses/355584/pages/project-1)
 
 ## App Info:
 
@@ -15,11 +15,11 @@ https://capsule-igtc.onrender.com
 
 ### Students
 
-- Youfu Yan
-- Isabel Dahl
-- Marcellinus, Steven Sugiarto
-- Ying Lu
-- Ola Oladeji
+- Youfu Yan, yan00111@umn.edu
+- Isabel Dahl, dahl1199@umn.edu
+- Marcellinus, Steven Sugiarto sugia005@umn.edu
+- Ying Lu, lu000097@umn.edu
+- Ola Oladeji, olade014@umn.edu
 
 ## Key Features
 
